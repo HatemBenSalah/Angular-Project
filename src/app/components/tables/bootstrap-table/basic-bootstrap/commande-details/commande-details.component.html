@@ -1,0 +1,22 @@
+<div *ngIf="Commande">
+    <div>
+        <label>Name: </label> {{Commande.firstName}}
+    </div>
+    <div>
+        <label>Age: </label> {{Commande.lastName}}
+    </div>
+    <div>
+        <label>Active: </label> {{Commande.email}}
+    </div>
+    <div>
+        <label>Active: </label> {{Commande.active}}
+    </div>
+
+    <span class="button is-small btn-primary" *ngIf='Commande.active' (click)='updateActive(false)'>Inactive</span>
+
+    <span class="button is-small btn-primary" *ngIf='!Commande.active' (click)='updateActive(true)'>Active</span>
+
+    <span class="button is-small btn-danger" (click)='deleteCommande()'>Delete</span>
+
+    <hr/>
+</div>

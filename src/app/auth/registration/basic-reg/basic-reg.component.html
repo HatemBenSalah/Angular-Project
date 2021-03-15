@@ -1,0 +1,99 @@
+<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+  <!-- starts -->
+  <div class="auth-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Authentication card start -->
+        <div class="login-card card-body auth-body">
+          <form class="md-float-material"  (ngSubmit)="signIn()">
+            <div class="text-center">
+             <br> <br> <img src="assets/images/auth/logo.png" alt="Nuage Technologies">
+            </div>
+            <div class="auth-box">
+              <div class="row m-b-20">
+                <div class="col-md-12">
+                  <h3 class="text-center txt-primary">Register In</h3>
+                </div>
+              </div>
+              <hr/>
+              <div class="input-group">
+                <input type="text" class="form-control"  id="firstName" required [(ngModel)]="user.firstName" name="firstName"placeholder=" FirstName">
+                <span class="md-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="text" class="form-control"  id="lastName" required [(ngModel)]="user.lastName" name="lastName"placeholder=" LastName">
+                <span class="md-line"></span>
+              </div>
+              
+              <div class="input-group">
+                <input type="number" class="form-control"  id="CIN" required [(ngModel)]="user.cin" name="CIN" placeholder=" CIN">
+                <span class="md-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="number" class="form-control"  id="phone" required [(ngModel)]="user.phone" name="phone" placeholder=" Phone Number">
+                <span class="md-line"></span>
+              </div>
+              <div class="input-group">
+                <input type="text" class="form-control"  id="Address" required [(ngModel)]="user.adresse" name="Address"placeholder=" Adresse">
+                <span class="md-line"></span>
+              </div>
+              
+              <div class="input-group">
+               
+                <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email" placeholder=" Email Address">
+                <span class="md-line"></span>
+              </div>
+              <div class="input-group">
+               
+                <input type="password" class="form-control" id="password" required [(ngModel)]="user.password"  name="password" placeholder=" password">
+                <span class="md-line"></span>
+              </div>
+              
+              <div class="input-group">
+                
+                <br>
+                <div class="dropdown">
+                  
+                  
+                </div>
+                <span class="md-line"></span>
+              </div>
+              <div class="row m-t-25 text-left">
+                <div class="col-md-12">
+                  <div class="checkbox-fade fade-in-primary">
+                    <label>
+                      <input type="checkbox" value="">
+                      <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                      <span class="text-inverse">I read and accept <a href="javascript:;">Terms &amp; Conditions.</a></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="checkbox-fade fade-in-primary">
+                    <label>
+                      <input type="checkbox" value="">
+                      <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                      <span class="text-inverse">I'am happy to join Nuage Technologies. </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row m-t-30">
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" >Sign in now.</button>
+                </div>
+              </div>
+              <hr/>
+              
+            </div>
+          </form>
+          <!-- end of form -->
+        </div>
+        <!-- Authentication card end -->
+      </div>
+      <!-- end of col-sm-12 -->
+    </div>
+    <!-- end of row -->
+  </div>
+  <!-- end of -->
+</section>

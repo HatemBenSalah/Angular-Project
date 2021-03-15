@@ -1,0 +1,11 @@
+{
+    "/EmployeeController": {
+      "target": "http://localhost:8686",
+      "secure": false
+    },
+    "/UserController": {
+      "target": "http://localhost:8686",
+      "secure": false
+    }
+   
+  }
