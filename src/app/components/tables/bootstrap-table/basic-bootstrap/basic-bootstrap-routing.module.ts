@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {BasicBootstrapComponent} from './basic-bootstrap.component';
 import { CommandeListComponent } from './commande-list/commande-list.component';
 import { CreateCommandeComponent } from './create-commande/create-commande.component';
-
 const routes: Routes = [
   {
     path: '',
@@ -26,7 +24,6 @@ const routes: Routes = [
     }
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

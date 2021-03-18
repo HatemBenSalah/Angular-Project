@@ -42,10 +42,30 @@
         </div>
   
         <div class="form-group">
-            <label for="name">Email ID</label>
+            <label for="name">Email </label>
             <input type="text" class="form-control" id="email" required [(ngModel)]="CommandeToEdit.email" name="email">
         </div>
-  
+        <div class="form-group">
+            <label for="name">Adress</label>
+            <input type="text" class="form-control" id="Adress" required [(ngModel)]="CommandeToEdit.adress" name="Adress">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Service Name</label>
+            <input type="text" class="form-control" id="Service_Name" required [(ngModel)]="CommandeToEdit.serviceName" name="Service_Name">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Phone</label>
+            <input type="text" class="form-control" id="Phone" required [(ngModel)]="CommandeToEdit.phone" name="Phone">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Panne description</label>
+            <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="CommandeToEdit.pannedescription" name="pannedescription">
+        </div>
+
+
         <button type="submit" class="btn btn-success"(click)="done()">Submit</button>
     </form>
   </div>

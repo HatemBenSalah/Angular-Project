@@ -27,10 +27,10 @@ export class CommandeService {
     return body || {};
   }
 
-  createCommande(Commande: Object){
+  createCommande(commande: Object){
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
-    return this.http.post('/CommandeController/createCommande',Commande,{headers: headers,responseType: 'json'}).pipe(
+    return this.http.post('/CommandeController/createCommande',commande,{headers: headers,responseType: 'json'}).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }

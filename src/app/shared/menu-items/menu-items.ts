@@ -47,7 +47,7 @@ const MENUITEMS = [
     main: [
       {
         state: 'bootstrap-table',
-        name: ' List Employee ',
+        name: ' List Commande ',
         type: 'link',
         icon: 'ti-receipt'
       }

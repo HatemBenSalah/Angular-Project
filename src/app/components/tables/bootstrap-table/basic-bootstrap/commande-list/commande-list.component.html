@@ -24,7 +24,6 @@
                     <th>Service Name</th>
                     <th>Phone Number</th>
                     <th>Panne description</th>
-
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -33,7 +32,11 @@
                     <td>{{Commande.firstName}}</td>
                     <td>{{Commande.lastName}}</td>
                     <td>{{Commande.email}}</td>
-                    <td>{{Commande.Adress}}</td>
+                    <td>{{Commande.adress}}</td>
+                    <td>{{Commande.serviceName}}</td>
+                    <td>{{Commande.phone}}</td>
+                    <td>{{Commande.panne_description}}</td>
+                
                     <td>
                         <button (click)="deleteCommande(Commande.id)">Delete</button>
                         <button (click)="EditCommande(Commande)">Edit</button> 
@@ -59,10 +62,29 @@
         </div>
 
         <div class="form-group">
-            <label for="name">Email ID</label>
+            <label for="name">Email </label>
             <input type="text" class="form-control" id="email" required [(ngModel)]="CommandeToEdit.email" name="email">
         </div>
 
+
+        <div class="form-group">
+            <label for="name">Adress</label>
+            <input type="text" class="form-control" id="Adress" required [(ngModel)]="CommandeToEdit.adress" name="Adress">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Service Name</label>
+            <input type="text" class="form-control" id="Service" required [(ngModel)]="CommandeToEdit.serviceName" name="Service"/>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Phone Number</label>
+            <input type="text" class="form-control" id="Phone" required [(ngModel)]="CommandeToEdit.phone" name="Phone">
+        </div>
+        <div class="form-group">
+            <label for="name">Panne description</label>
+            <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="CommandeToEdit.pannedescription" name="pannedescription">
+        </div>
         <button type="submit" class="btn btn-success"(click)="done()">Submit</button>
     </form>
 </div>

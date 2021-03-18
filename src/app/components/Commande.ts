@@ -3,9 +3,9 @@ export class Commande {
     firstName: string;
     lastName: string;
     email: string;
-    adress: string;
+    adresse: string;
     serviceName: string;
-    panne_description:string;
+    pannedescription: string;
     phone :number;
     active: boolean;
 }
