@@ -48,6 +48,7 @@ import {MenuItems} from '../../shared/menu-items/menu-items';
   ]
 })
 export class AdminComponent implements OnInit {
+  username=sessionStorage.getItem("Useremail");
   deviceType = 'desktop';
   verticalNavType = 'expanded';
   verticalEffect = 'shrink';

@@ -5,39 +5,30 @@ import {AuthComponent} from './layouts/auth/auth.component';
 const routes: Routes = [
   {
     path:'',
-    redirectTo: 'auth',
+    redirectTo: 'auth/registration',
     pathMatch:'full'
   },
   {
     path: '',
     component: AdminComponent,
     children: [
-      {
+      /*{
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
-      },
-      {
+      },*/
+      { 
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-      }, {
-        path: 'basic',
-        loadChildren: () => import('./components/basic/basic.module').then(m => m.BasicModule)
-      }, {
+      }, /*{
         path: 'notifications',
         loadChildren: () => import('./components/advance/notifications/notifications.module').then(m => m.NotificationsModule)
-      }, {
-        path: 'forms',
-        loadChildren: () => import('./components/forms/basic-elements/basic-elements.module').then(m => m.BasicElementsModule)
-      }, {
-        path: 'bootstrap-table',
-        loadChildren: () => import('./components/tables/bootstrap-table/basic-bootstrap/basic-bootstrap.module').then(m => m.BasicBootstrapModule),
+      },*/  {
+        path: 'table',
+        loadChildren: () => import('./components/tables//basic-bootstrap.module').then(m => m.BasicBootstrapModule),
       }, {
         path: 'map',
         loadChildren: () => import('./map/google-map/google-map.module').then(m => m.GoogleMapModule),
-      }, {
-        path: 'simple-page',
-        loadChildren: () => import('./simple-page/simple-page.module').then(m => m.SimplePageModule)
       }
     ]
   },
@@ -67,4 +58,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+  
+}

@@ -1,0 +1,49 @@
+<div [hidden]="submitted" style="width: 400px;" >
+    <h3>Create Commande {{hello}}</h3>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" class="form-control" id="firstName" required [(ngModel)]="commande.firstName" name="firstName">
+        </div>
+        
+
+        <div class="form-group">
+            <label for="name">Last Name</label>
+            <input type="text" class="form-control" id="lastName" required [(ngModel)]="commande.lastName" name="lastName">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Adress</label>
+            <input type="text" class="form-control" id="adress" required [(ngModel)]="commande.adresse" name="adress">
+        </div>
+        <div class="form-group">
+            <label for="name">Email</label>
+            <input type="text" class="form-control" id="email" required [(ngModel)]="commande.email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="name">Phone</label>
+            <input type="text" class="form-control" id="Phone" required [(ngModel)]="commande.phone" name="Phone" value="a">
+        </div>
+
+        <div class="form-group">
+            <label for="name"> service name </label>
+          <!--  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name="service" id="service-select" [(ngModel)]="commande.nameservice">
+               
+                    <option selected *ngFor="let o of options">
+                        {{o.name}}
+                     </option>
+            </select> 
+            -->   
+        </div>
+        <div class="form-group">
+            <label for="name">Panne description </label>
+            <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="commande.pannedescription" name="pannedescription">
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h4>Your command has been  submitted successfully. We will call you as soon as possible</h4>
+</div>

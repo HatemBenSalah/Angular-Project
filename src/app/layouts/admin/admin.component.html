@@ -8,7 +8,7 @@
             <i class="ti-menu"></i>
           </a>
           <a [routerLink]="['/']">
-            <img class="img-fluid" src="" alt="Home Maintenance Services" />
+            <img class="img-fluid" src="assets/images/auth/logo.png" alt="Home Maintenance Services" />
           </a>
           <a (click)="onMobileMenu()" class="mobile-options">
             <i class="ti-more"></i>
@@ -143,33 +143,8 @@
               </li>
             </ul>
             <ul [@mobileMenuTop]="isCollapsedMobile" class="nav-right" [ngClass]="isCollapsedMobile">
-              <li class="header-notification lng-dropdown">
-                <a href="javascript:;" id="dropdown-active-item">
-                  <i class="flag-icon flag-icon-gb m-r-5"></i> English
-                </a>
-                <ul class="show-notification">
-                  <li>
-                    <a href="javascript:;" data-lng="en">
-                      <i class="flag-icon flag-icon-gb m-r-5"></i> English
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="es">
-                      <i class="flag-icon flag-icon-es m-r-5"></i> Spanish
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="pt">
-                      <i class="flag-icon flag-icon-pt m-r-5"></i> Portuguese
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="fr">
-                      <i class="flag-icon flag-icon-fr m-r-5"></i> French
-                    </a>
-                  </li>
-                </ul>
-              </li>
+             
+                
               <li class="header-notification">
                 <a href="javascript:;">
                   <i class="ti-bell"></i>
@@ -221,7 +196,7 @@
               <li class="user-profile header-notification">
                 <a [routerLink]="['/']">
                   <img src="assets/images/user.png" alt="User-Profile-Image">
-                  <span>Bensalah</span>
+                  <span>{{username}}</span>
                   <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">
