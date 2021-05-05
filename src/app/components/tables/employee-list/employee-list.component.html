@@ -1,0 +1,101 @@
+<div class="panel panel-default">
+
+    <div class="d-flex justify-content-between">
+        <div class="p-2">
+            <h1>Employee list</h1>
+        </div>
+        <div class="p-3">
+            <button class="btn btn-primary"
+                    routerLink='create'
+            >
+                ADD
+            </button>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Service Name</th>
+                    <th>Phone Number</th>
+                    <th>CIN</th>
+                    <th>Password</th>
+
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Employee of employees">
+                    <td>{{Employee.employeName}}</td>
+                    <td>{{Employee.employeLastname}}</td>
+                    <td>{{Employee.employeemail}}</td>
+                    <td>{{Employee.employeservice}}</td>
+                    <td>{{Employee.employephone}}</td>
+                    <td>{{Employee.employecin}}</td>
+                    <td>{{Employee.employeepassword}}</td>
+                
+                    <td>
+                        <button (click)="deleteEmployee(Employee.id)">Delete</button>
+                        <button (click)="EditEmployee(Employee)">Edit</button> 
+                    </td>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div *ngIf="edition">
+<h3>Edit Employee</h3>
+<div [hidden]="submitted" style="width: 400px;" >
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" class="form-control" id="employeName" required [(ngModel)]="EmployeeToEdit.employeName" name="employeName">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Last Name</label>
+            <input type="text" class="form-control" id="employeLastname" required [(ngModel)]="EmployeeToEdit.employeLastname" name="employeLastname"/>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Email </label>
+            <input type="text" class="form-control" id="employeemail" required [(ngModel)]="EmployeeToEdit.employeemail" name="employeemail">
+        </div>
+
+
+        <div class="form-group">
+            <label for="name">CIN</label>
+            <input type="number" class="form-control" id="employecin" required [(ngModel)]="EmployeeToEdit.employecin" name="employecin">
+        </div>
+
+        <div class="form-group">
+            <label for="name"> service name </label>
+            <select class="form-select"  name="employeservice" id="service-select" [(ngModel)]="EmployeeToEdit.employeservice">
+               
+                    <option *ngFor="let o of options">
+                        {{o.name}}
+                     </option>
+            </select>    
+        </div>
+
+        <div class="form-group">
+            <label for="name">Phone Number</label>
+            <input type="text" class="form-control" id="employephone" required [(ngModel)]="EmployeeToEdit.employephone" name="employephone">
+        </div>
+        <div class="form-group">
+            <label for="name">Password</label>
+            <input type="password" class="form-control" id="employeepassword" required [(ngModel)]="EmployeeToEdit.employeepassword" name="employeepassword">
+        </div>
+        <button type="submit" class="btn btn-success"(click)="done()">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+</div>
+</div>

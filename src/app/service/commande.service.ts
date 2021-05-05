@@ -12,14 +12,20 @@ export class CommandeService {
   constructor(private http: HttpClient) { }
 
 
-  getCommande(){
+  getCommande(userId){
     let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json');
-    return this.http.get('/CommandeController/getCommande',{headers: headers,responseType: 'json'}).pipe(
+     headers = headers.set('Content-Type', 'application/json');
+    return this.http.get('/CommandeController/getCommande/'+userId,{headers: headers,responseType: 'json'}).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
-
+  getAllCommande(){
+    let headers = new HttpHeaders();
+     headers = headers.set('Content-Type', 'application/json');
+    return this.http.get('/CommandeController/getAllCommande',{headers: headers,responseType: 'json'}).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
   private handleError(error: any) { return observableThrowError(error); }
   private extractData(res) {
     console.log(res)

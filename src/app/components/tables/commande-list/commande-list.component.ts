@@ -2,6 +2,8 @@ import { Observable } from "rxjs";
 import { Component, OnInit,Input } from "@angular/core";
 import { CommandeService } from 'src/app/service/commande.service';
 import { Commande } from 'src/app/entity/Commande';
+import { TokenStorageService } from 'src/app/service/TokenStorageService';
+import{User} from 'src/app/entity/User';
 
 @Component({
   selector: "app-commande-list",
@@ -23,15 +25,16 @@ export class CommandeListComponent implements OnInit {
   commandes: Commande[];
   CommandeToEdit:any={};
   savedToEditCommande:any={};
-  
-  constructor(private CommandeService: CommandeService) {}
+  user:User =new User();
+  constructor(private CommandeService: CommandeService , private tokenStorageService :TokenStorageService) {}
 
   ngOnInit() {
     this.reloadData();
   }
 
   reloadData() {
-    this.CommandeService.getCommande().subscribe(data => {
+   
+    this.CommandeService.getCommande(this.tokenStorageService.getUser().id).subscribe(data => {
       this.commandes = data;
     });
   }
@@ -51,9 +54,6 @@ export class CommandeListComponent implements OnInit {
     this.savedToEditCommande =cm ;
     Object.assign(this.CommandeToEdit, cm);
     this.edition=true;
-    
-    
-
   }
   done(){
     console.log(this.CommandeToEdit)

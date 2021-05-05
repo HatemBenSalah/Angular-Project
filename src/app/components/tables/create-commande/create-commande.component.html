@@ -1,6 +1,9 @@
-<div [hidden]="submitted" style="width: 400px;" >
-    <h3>Create Commande {{hello}}</h3>
+<div [hidden]="submitted" style="width: 500px;" >
+    <h3>Create Commande </h3>
 
+    <div class="position-absolute" style="right: 200px" > 
+        <img src="./assets/images/services/commande.jpg">
+    </div>
     <form (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="name">First Name</label>
@@ -18,6 +21,9 @@
             <input type="text" class="form-control" id="adress" required [(ngModel)]="commande.adresse" name="adress">
         </div>
         <div class="form-group">
+            
+            
+
             <label for="name">Email</label>
             <input type="text" class="form-control" id="email" required [(ngModel)]="commande.email" name="email">
         </div>
@@ -28,22 +34,22 @@
 
         <div class="form-group">
             <label for="name"> service name </label>
-          <!--  <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name="service" id="service-select" [(ngModel)]="commande.nameservice">
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name="service" id="service-select" [(ngModel)]="commande.nameservice">
                
                     <option selected *ngFor="let o of options">
                         {{o.name}}
                      </option>
             </select> 
-            -->   
+           
         </div>
         <div class="form-group">
             <label for="name">Panne description </label>
             <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="commande.pannedescription" name="pannedescription">
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-
 <div [hidden]="!submitted">
     <h4>Your command has been  submitted successfully. We will call you as soon as possible</h4>
 </div>
+

@@ -31,7 +31,7 @@ export interface Menu {
 
 const MENUITEMS = [
   {
-    label: 'Navigation',
+    label: 'Home',
     main: [
       {
         state: 'dashboard',
@@ -43,16 +43,36 @@ const MENUITEMS = [
   },
   
   {
-    label: 'Tables',
+    label: 'Commandes',
     main: [
       {
         state: 'table',
-        name: ' List Commande ',
-        type: 'link',
-        icon: 'ti-receipt'
+        name: 'Options ',
+        type: 'sub',
+        icon: 'ti-receipt',
+        children: [
+          {
+            state: 'createCommande',
+            type: 'link',
+            name: 'Create Commande',
+          }, {
+            state: 'ListCommande',
+            type: 'link',
+            name: ' List Commande',
+          },
+          
+         {
+          state: 'ListClaim',
+          type: 'link',
+          name: 'Claim List',
+        }
+      
+        ]
       }
     ]
   },
+  
+  
   {
     label: 'Company Location',
     main: [
@@ -65,30 +85,19 @@ const MENUITEMS = [
     ]
   },
   {
-    label: 'Pages',
+    label: 'About Us',
     main: [
       {
-        state: 'auth',
-        short_label: 'A',
-        name: 'Authentication',
-        type: 'sub',
-        icon: 'ti-id-badge',
-        children: [
-          {
-            state: 'login',
-            type: 'link',
-            name: 'Login',
-            target: true
-          }, {
-            state: 'registration',
-            type: 'link',
-            name: 'Registration',
-            target: true
-          }
-        ]
+        state: 'map',
+        name: 'HMS',
+        type: 'link',
+        icon: 'ti-map-alt'
       }
     ]
-  },
+  }
+   
+ 
+  
   
 ];
 
@@ -98,7 +107,4 @@ export class MenuItems {
     return MENUITEMS;
   }
 
-  /*add(menu: Menu) {
-    MENUITEMS.push(menu);
-  }*/
 }

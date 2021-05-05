@@ -1,0 +1,51 @@
+<div [hidden]="submitted" style="width: 400px;" >
+    <h3>Create Employee </h3>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">First Name</label>
+            <input type="text" class="form-control" id="employeName" required [(ngModel)]="employee.employeName" name="employeName">
+        </div>
+        
+
+        <div class="form-group">
+            <label for="name">Last Name</label>
+            <input type="text" class="form-control" id="employeLastname" required [(ngModel)]="employee.employeLastname" name="employeLastname">
+        </div>
+
+        <div class="form-group">
+            <label for="name">CIN</label>
+            <input type="number" class="form-control" id="employecin" required [(ngModel)]="employee.employecin" name="employecin">
+        </div>
+        <div class="form-group">
+            <label for="name">Email</label>
+            <input type="text" class="form-control" id="employeemail" required [(ngModel)]="employee.employeemail" name="employeemail">
+        </div>
+        <div class="form-group">
+            <label for="name">Password</label>
+            <input type="password" class="form-control" id="password" required [(ngModel)]="employee.password" name="password">;
+         
+        </div>
+        <div class="form-group">
+            <label for="name">Phone</label>
+            <input type="number" class="form-control" id="employephone" required [(ngModel)]="employee.employephone" name="employephone" value="a">
+        </div>
+
+        <div class="form-group">
+            <label for="name"> service name </label>
+         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name="employeservice" id="service-select" [(ngModel)]="employee.employeservice">
+               
+                    <option selected *ngFor="let o of options">
+                        {{o.name}}
+                     </option>
+            </select> 
+             
+        </div>
+      
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h4>Your Claim has been  submitted successfully. We will call you as soon as possible</h4>
+</div>

@@ -3,6 +3,9 @@ export class Employee {
     employeName: string;
     employeLastname: string;
     employeemail: string;
-    CIN:string;
+    employeservice:string;
+    employephone:string;
+    employecin:string;
+    employeepassword:string;
     active: boolean;
 }

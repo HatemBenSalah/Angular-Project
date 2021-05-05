@@ -3,13 +3,23 @@
       "target": "http://localhost:8686",
       "secure": false
     },
-    "/UserController": {
+    "/api/auth": {
       "target": "http://localhost:8686",
       "secure": false
     },
     "/EmployeeController": {
       "target": "http://localhost:8686",
       "secure": false
+    },
+    "/ClaimController": {
+      "target": "http://localhost:8686",
+      "secure": false
+    },
+    "/UserController": {
+      "target": "http://localhost:8686",
+      "secure": false
     }
+
+
    
   }

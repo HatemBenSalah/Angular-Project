@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/entity/User';
-import { UserService } from '../../../service/user.service';
+import { RegistrationService } from 'src/app/service/registration.service';
 @Component({
   selector: 'app-basic-reg',
   templateUrl: './basic-reg.component.html',
@@ -10,39 +10,36 @@ import { UserService } from '../../../service/user.service';
 })
 export class BasicRegComponent implements OnInit {
   user: User = new User();
-  submitted = false;
+  message='';
  
-  constructor(private userService: UserService,private router:Router) { }
+  constructor(private registrationservice: RegistrationService,private router:Router) { }
 
   ngOnInit() {
   }
 
   newUser(): void {
-    this.submitted = false;
     this.user = new User();
   }
 
   save() {
-    sessionStorage.setItem("Firstname",this.user.firstName);
-    sessionStorage.setItem("Lastname",this.user.lastName);
-    sessionStorage.setItem("CIN",this.user.cin);
-    sessionStorage.setItem("Phone",this.user.phone);
-    sessionStorage.setItem("Useremail",this.user.email);
-    sessionStorage.setItem("Adresse",this.user.adresse);
-    sessionStorage.setItem("password",this.user.adresse);
+    this.user.roles="client";
+    this.registrationservice.register(this.user).subscribe(
+      data=>{
+        console.log("response recived");
+     },
+      error =>{
+        console.log("exeption occured");
+        this.message="email and password does not match.";
+      
+      }
+    )
 
-
-
-    this.userService.createUser(this.user)
-      .subscribe(data => {
-        this.user = new User();
-      });
-    
+  
   }
 
  
   RegisterIn(){
-    this.submitted = true;
+
     this.save();
     this.router.navigate(['/dashboard']);
   }

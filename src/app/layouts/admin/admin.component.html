@@ -145,83 +145,28 @@
             <ul [@mobileMenuTop]="isCollapsedMobile" class="nav-right" [ngClass]="isCollapsedMobile">
              
                 
-              <li class="header-notification">
-                <a href="javascript:;">
-                  <i class="ti-bell"></i>
-                  <span class="badge">5</span>
-                </a>
-                <ul class="show-notification">
-                  <li>
-                    <h6>Notifications</h6>
-                    <label class="label label-danger">New</label>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">John Doe</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">Joseph William</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">Sara Soudein</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li class="header-notification">
-                <a href="javascript:;" (click)="toggleChat()" class="displayChatbox">
-                  <i class="ti-comments"></i>
-                  <span class="badge">9</span>
-                </a>
-              </li>
+
               <li class="user-profile header-notification">
-                <a [routerLink]="['/']">
+                <a >
                   <img src="assets/images/user.png" alt="User-Profile-Image">
-                  <span>{{username}}</span>
+                  <span>{{email}}</span>
                   <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">
                   <li>
-                    <a [routerLink]="['/crm-contact']">
+                    <a [routerLink]="['/setting']">
                       <i class="ti-settings"></i> Settings
                     </a>
                   </li>
                   <li>
-                    <a [routerLink]="['/user/profile']">
-                      <i class="ti-user"></i> Profile
+                    <a [routerLink]="['/Profil']">
+                      <i class="ti-user"></i> Profil
                     </a>
                   </li>
+                 
+                
                   <li>
-                    <a [routerLink]="['/advance/notifications']">
-                      <i class="ti-email"></i> My Messages
-                    </a>
-                  </li>
-                  <li>
-                    <a [routerLink]="['/authentication/lock-screen']" target="_blank">
-                      <i class="ti-lock"></i> Lock Screen
-                    </a>
-                  </li>
-                  <li>
-                    <a [routerLink]="['/']">
+                    <a [routerLink]="['/auth/login']" (click)="Logout()">
                       <i class="ti-layout-sidebar-left"></i> Logout
                     </a>
                   </li>

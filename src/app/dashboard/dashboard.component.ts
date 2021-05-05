@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   }
 public servicename : string;
   electricienCliked() {
-    this.routeur.navigate(['table/create']);
+    this.routeur.navigate(['table/createCommande']);
     this.servicename="najar";
     localStorage.setItem('servicename',this.servicename)
   
@@ -32,27 +32,27 @@ public servicename : string;
    localStorage.removeItem('servicename');
     localStorage.setItem('servicename',this.servicename)
   
-    this.routeur.navigate(['table/create']);
+    this.routeur.navigate(['table/createCommande']);
     
   } 
   plombierCliked() {
-    this.routeur.navigate(['table/create']);
+    this.routeur.navigate(['table/createCommande']);
     
   } 
   parabolisteCliked() {
-    this.routeur.navigate(['table/create']);
+    this.routeur.navigate(['table/createCommande']);
     
   } 
   minusierCliked() {
-    this.routeur.navigate(['table/create']);
+    this.routeur.navigate(['table/createCommande']);
     
   } 
   maconCliked() {
-    this.routeur.navigate(['table/create']);
+    this.routeur.navigate(['table/createCommande']);
     
   } 
   jardinierCliked() {
-    this.routeur.navigate(['table/create']);
+    this.routeur.navigate(['table/createCommande']);
     
   } 
 }

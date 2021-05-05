@@ -4,25 +4,35 @@
       <div class="col-sm-12">
         <div class="login-card card-body auth-body">
           <form class="md-float-material">
-            
+           
             <div class="auth-box">
               <div class="row m-b-20">
                 <div class="col-md-12">
-                  <h3 class="text-left txt-primary">Sign In</h3>
+                  <h3 class="text-left txt-primary" class="centrer">Sign In{{errorMessage}}</h3>
                 </div>
               </div>
               <hr/>
-              <div class="input-group">
-                <input type="email" class="form-control" placeholder="Your Email Address" name="email" [(ngModel)]="username">
+              <div >
+                <input type="email" class="form-control" placeholder=" Email :" name="email" [(ngModel)]="user.email" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched"/>
+                <div>
+                <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required filed</small>
+              </div>
                 <span class="md-line"></span>
               </div>
-              <div class="input-group">
-                <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="password">
+              <br>
+
+
+
+              <div >
+                <input type="password" class="form-control" placeholder=" Password :" name="password" [(ngModel)]="user.password" required #password="ngModel"
+                [class.is-invalid]="password.invalid && password.touched">
                 <span class="md-line"></span>
               </div>
+              <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required filed</small>
            
               <div class="row m-t-30">
                 <div class="col-md-12">
+                  <label class="text-danger"></label>
                   <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)=checkLogin()>Sign in</button>
                 </div>
               </div>

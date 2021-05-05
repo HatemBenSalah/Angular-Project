@@ -10,46 +10,73 @@
             <div class="auth-box">
               <div class="row m-b-20">
                 <div class="col-md-12">
-                  <h3 class="text-center txt-primary">Register In</h3>
+                  <h3 class="text-center txt-primary">Register In {{message}}</h3>
                 </div>
               </div>
               <hr/>
-              <div class="form-group">
-                <input type="text" class="form-control"  id="firstName" required [(ngModel)]="user.firstName" name="firstName"placeholder=" FirstName"/>
+            
+             
+              <br>
+              <div >
+                <input type="text" class="form-control"  id="firstName" required [(ngModel)]="user.firstName" name="firstName"placeholder=" FirstName" required #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched"/>
+             <div>
+                  <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">Email is required filed</small>
+             </div>
                 <span class="md-line"></span>
               </div>
-              <div class="input-group">
-                <input type="text" class="form-control"  id="lastName" required [(ngModel)]="user.lastName" name="lastName"placeholder=" LastName">
+              <br>
+              <div >
+                <input type="text" class="form-control"  id="lastName" required [(ngModel)]="user.lastName" name="lastName"placeholder=" LastName" required #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched"/>
+                <div>
+                  <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">lastName is required filed</small>
+                </div>
                 <span class="md-line"></span>
               </div>
-              
-              <div class="input-group">
-                <input type="number" class="form-control"  id="CIN" required [(ngModel)]="user.cin" name="CIN" placeholder=" CIN">
+              <br>
+              <div >
+                <input type="number" class="form-control"  id="CIN" required [(ngModel)]="user.cin" name="cin" placeholder=" CIN" required #cin="ngModel" [class.is-invalid]="cin.invalid && cin.touched"/>
+                <div>
+                  <small class="text-danger" [class.d-none]="cin.valid || cin.untouched">CIN is required filed</small>
+                </div>
                 <span class="md-line"></span>
               </div>
-              <div class="input-group">
-                <input type="number" class="form-control"  id="phone" required [(ngModel)]="user.phone" name="phone" placeholder=" Phone Number">
+              <br>
+              <div>
+                <input type="number" class="form-control"  id="phone"required [(ngModel)]="user.phone" name="phone" placeholder=" Phone Number" required #phone="ngModel"  [class.is-invalid]="phone.invalid && phone.touched"/>
+                 <div>
+                  <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone is required filed</small>
+                </div>
                 <span class="md-line"></span>
               </div>
-              <div class="input-group">
-                <input type="text" class="form-control"  id="Address" required [(ngModel)]="user.adresse" name="Address"placeholder=" Adresse">
+              <br>
+              <div >
+                <input type="text" class="form-control"  id="Adresse" required [(ngModel)]="user.adresse" name="address"placeholder=" Adresse" required #adresse="ngModel" [class.is-invalid]="adresse.invalid && adresse.touched"/>
+                <div>
+                  <small class="text-danger" [class.d-none]="adresse.valid || adresse.untouched">Adresse is required filed</small>
+                </div>
                 <span class="md-line"></span>
               </div>
-              
-              <div class="input-group">
+              <br>
+              <div >
                
-                <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email" placeholder=" Email Address">
+                <input type="text" class="form-control" id="email" required [(ngModel)]="user.email" name="email" placeholder=" Email Address" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched"/> 
+                <div>
+                  <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required filed</small>
+                </div>
                 <span class="md-line"></span>
               </div>
-              <div class="input-group">
-               
-                <input type="password" class="form-control" id="password" required [(ngModel)]="user.password"  name="password" placeholder=" password">
+              <br>
+              <div >
+                <input type="password" class="form-control" id="password" required [(ngModel)]="user.password"  name="password" placeholder=" password" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched"/>
+                <div>
+                  <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required filed</small>
+                </div>
                 <span class="md-line"></span>
               </div>
-              
+              <br>
               <div class="input-group">
                 
-                <br>
+              
                 <div class="dropdown">
                   
                   
@@ -60,7 +87,7 @@
                 <div class="col-md-12">
                   <div class="checkbox-fade fade-in-primary">
                     <label>
-                      <input type="checkbox" value="">
+                      <input type="checkbox" name="ConditionsCheckbox">
                       <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                       <span class="text-inverse">I read and accept <a href="javascript:;">Terms &amp; Conditions.</a></span>
                     </label>
@@ -69,7 +96,7 @@
                 <div class="col-md-12">
                   <div class="checkbox-fade fade-in-primary">
                     <label>
-                      <input type="checkbox" value="">
+                      <input type="checkbox" name="HappytojoinCheckbox">
                       <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                       <span class="text-inverse">I'am happy to join HMS</span>
                     </label>

@@ -34,6 +34,7 @@ export class EmployeeService {
       map(this.extractData),
       catchError(this.handleError));
   }
+ 
 
   updateEmployee(employee): Observable<Object> {
     return this.http.post('/EmployeeController/updateEmployee',employee).pipe(

@@ -1,27 +1,54 @@
+import {  map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { TokenStorageService } from 'src/app/service/TokenStorageService';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-public   username;
-  constructor() { }
-  authenticate(username, password) {
-    if (username === "hatembensalh@gmail.com" && password === "kaka0000") {
-      sessionStorage.setItem("Useremail",this.username);
-      return true;
-    } else {
-      return false;
+export class LoginService{
+  isLoggedIn = false;
+    httpOptions =
+  {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/Json'
+    })
+  }
+  
+  constructor(private http: HttpClient,private tokenStorage: TokenStorageService ) { }
+
+  login(email: string, password: string): Observable<any> {
+    return this.http.post('/api/auth/signin', {
+      email,
+      password,
+    }, this.httpOptions).pipe(map(data=>
+      {
+        return data;
+      })); 
     }
-  }
 
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
-    return !(user === null)
-  }
-
-  logOut() {
-    sessionStorage.removeItem('username')
-  }
+    private handleError<T>(operation = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+        console.error(error); // log to console instead
+        this.log(`${operation} failed: ${error.message}`);
+        return of(result as T);
+      };
+    }
+    private log(message: string) {
+      console.log(message);
+    }
+  
+    isLoggedInd(){
+    //  let token = localStorage.getItem('accessToken');
+      if (this.tokenStorage.getToken()) {
+        return true ;
+      } else {
+        return false;
+      }
+    }
+ 
+  
+  
+  
 }

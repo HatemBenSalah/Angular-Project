@@ -11,7 +11,7 @@ export class GoogleMapComponent implements OnInit {
   latA = 55.6929031;
   lngA = -122.512636;
   zoom = 8;
-
+  
   styles: any = [{
     featureType: 'all',
     stylers: [{
@@ -36,6 +36,7 @@ export class GoogleMapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+   
   }
-
+  
 }

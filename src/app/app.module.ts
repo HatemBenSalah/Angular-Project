@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layouts/admin/admin.component';
@@ -10,7 +9,14 @@ import { BreadcrumbsComponent } from './layouts/admin/breadcrumbs/breadcrumbs.co
 import { AuthComponent } from './layouts/auth/auth.component';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { ProfilComponent } from './profil/profil/profil.component';
+import { UserSettingComponent } from './profil/user-setting/user-setting.component';
+import { TokenInterceptor } from './Token/TokenInterceptor';
+import { AdminboardComponent } from './adminboard/adminboard.component';
+import { EmployeeboardComponent } from './employeeboard/employeeboard.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +24,12 @@ import { HttpClientModule } from '@angular/common/http';
     AdminComponent,
     TitleComponent,
     BreadcrumbsComponent,
-    AuthComponent
+    AuthComponent,
+    HomeComponent,
+    AdminboardComponent,
+    EmployeeboardComponent,
+   
+    
   ],
   imports: [
     BrowserModule,
@@ -28,11 +39,14 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    HttpModule, 
-    JsonpModule
+    HttpClientModule
+   
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

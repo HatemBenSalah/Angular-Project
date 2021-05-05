@@ -2,6 +2,9 @@ import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angu
 import {state, style, transition, animate, trigger, AUTO_STYLE} from '@angular/animations';
 import 'rxjs/add/operator/filter';
 import {MenuItems} from '../../shared/menu-items/menu-items';
+import { Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/service/TokenStorageService';
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -48,7 +51,7 @@ import {MenuItems} from '../../shared/menu-items/menu-items';
   ]
 })
 export class AdminComponent implements OnInit {
-  username=sessionStorage.getItem("Useremail");
+  email='';
   deviceType = 'desktop';
   verticalNavType = 'expanded';
   verticalEffect = 'shrink';
@@ -65,11 +68,12 @@ export class AdminComponent implements OnInit {
 
   config: any;
 
-  constructor(public menuItems: MenuItems) {
+  constructor(public menuItems: MenuItems, private tokenStorageService: TokenStorageService , private router: Router) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
     this.setMenuAttributs(this.windowWidth);
+   this. email=localStorage.getItem('email');
   }
 
   ngOnInit() { }
@@ -154,5 +158,9 @@ export class AdminComponent implements OnInit {
   onScroll(event) {
     this.isScrolled = false;
   }
+  Logout(){
+    this.tokenStorageService.signOut();
+    
 
+  }
 }

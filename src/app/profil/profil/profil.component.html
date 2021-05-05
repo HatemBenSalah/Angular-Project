@@ -1,0 +1,150 @@
+<div class=" card text-info mb-3" style="width: 75rem;">
+  <div class="card-header">
+   <h3><B> Profil Informations </B> </h3>
+  </div>
+  <div class="card-body">
+ 
+<div class="container primary">
+  <div class="row">
+    <div class="col-sm">
+     First Name 
+    </div>
+    <div class="col-sm" *ngIf="!ModifierFirstname">
+     
+      {{firstname}}
+    </div>
+   <div class="col-sm" *ngIf="ModifierFirstname" >
+    <input type="text" placeholder=" First Name "  [(ngModel)]="user.firstName">
+   </div>
+  <div class="col-sm"  >
+      <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierFirstname" (click)="Editfirstname()">
+      <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierFirstname" (click)="Editfirstname()">
+  </div>
+  </div>
+</div>
+<br>
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm">
+       Last Name
+      </div>
+      <div class="col-sm" *ngIf="!ModifierLastname">
+     
+        {{lastname}}
+      </div>
+     <div class="col-sm" *ngIf="ModifierLastname" >
+      <input type="text" placeholder=" Last Name "  [(ngModel)]="user.lastName">
+     </div>
+    <div class="col-sm"  >
+        <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierLastname" (click)="EditLastname()">
+        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierLastname" (click)="EditLastname()">
+    </div>
+    </div>
+  </div>
+  <br>
+  
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+      Email 
+      </div>
+      <div class="col-sm" *ngIf="!ModifierEmail">
+        {{email}}
+      </div>
+     <div class="col-sm" *ngIf="ModifierEmail" >
+      <input type="text" placeholder=" email "  [(ngModel)]="user.email">
+     </div>
+    <div class="col-sm"  >
+        <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierEmail" (click)="EditEmail()">
+        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierEmail" (click)="EditEmail()">
+    </div>
+    </div>
+  </div>
+  <br>
+ 
+  
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+       Password
+      </div>
+      <div class="col-sm" *ngIf="!ModifierPassword">
+        *****************
+      </div>
+     <div class="col-sm" *ngIf="ModifierPassword" >
+      <input type="password" placeholder=" Password "  [(ngModel)]="user.password">
+     </div>
+    <div class="col-sm"  >
+        <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierPassword" (click)="EditPasswordname()">
+        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierPassword" (click)="EditPasswordname()">
+    </div>
+   
+    </div>
+  </div>
+  <br>
+  
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+      Location
+      </div>
+      <div class="col-sm" *ngIf="!ModifierLocation">
+        {{Location}}
+      </div>
+     <div class="col-sm" *ngIf="ModifierLocation" >
+      <input type="text" placeholder=" Location "  [(ngModel)]="user.adresse" >
+     </div>
+    <div class="col-sm"  >
+        <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierLocation" (click)="EditLocation()">
+        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierLocation" (click)="EditLocation()">
+    </div>
+    </div>
+  </div>
+  <br>
+  
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+      CIN
+      </div>
+      <div class="col-sm" *ngIf="!ModifierCIN">
+        {{CIN}}
+      </div>
+     <div class="col-sm" *ngIf="ModifierCIN" >
+      <input type="number" placeholder=" CIN "  [(ngModel)]="user.cin">
+     </div>
+    <div class="col-sm"  >
+        <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierCIN" (click)="EditCIN()">
+        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierCIN" (click)="EditCIN()">
+    </div>
+    </div>
+  </div>
+  <br>
+ 
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+       Phone 
+      </div>
+      <div class="col-sm" *ngIf="!ModifierPhone">
+        {{phone}}
+      </div>
+     <div class="col-sm" *ngIf="ModifierPhone" >
+      <input type="number" placeholder=" Phone "  [(ngModel)]="user.phone" >
+     </div>
+    <div class="col-sm"  >
+        <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierPhone" (click)="EditPhone()">
+        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierPhone" (click)="EditPhone()">
+    </div>
+    </div>
+  </div>
+  <br>
+  
+</div>
+</div>

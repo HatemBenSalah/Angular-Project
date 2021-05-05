@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export class Commande {
     id: number;
     firstName: string;
@@ -8,4 +10,7 @@ export class Commande {
     pannedescription: string;
     phone :number;
     active: boolean;
+    user:User;
+    state:String;
+    datedemmande:Date;
 }

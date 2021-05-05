@@ -1,7 +1,6 @@
 import { throwError as observableThrowError, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Response, ResponseContentType, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -12,13 +11,14 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
 
-  getUser(){
+  getUserbyId(user)  : Observable<any>{
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
-    return this.http.get('/UserController/getUser',{headers: headers,responseType: 'json'}).pipe(
+    return this.http.post('/UserController/getUser',user,{headers: headers,responseType: 'json'}).pipe(
       map(this.extractData),
       catchError(this.handleError));
   }
+
 
   private handleError(error: any) { return observableThrowError(error); }
   private extractData(res) {
@@ -27,26 +27,17 @@ export class UserService {
     return body || {};
   }
 
-  createUser(user: Object){
+  
+  updateUser(user ): Observable<Object> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
-    return this.http.post('/UserController/createUser',user,{headers: headers,responseType: 'json'}).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
-  }
-
-  updateUser(user): Observable<Object> {
-    return this.http.post('/UserController/updateUser',user).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
-  }
-
-  deleteUser(id: number) {
-    return this.http.post('/UserController/deleteUser',id).pipe(
-      map(this.extractData),
     
-      catchError(this.handleError));
-   
+      return this.http.post('/UserController/updateUser',user,{headers: headers,responseType: 'json'}).pipe(
+        map(this.extractData),
+        catchError(this.handleError));
+    }
   }
 
-}
+ 
+
+

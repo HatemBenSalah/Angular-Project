@@ -1,20 +1,14 @@
-<div class="panel panel-default">
 
+<div class="panel panel-default p">
     <div class="d-flex justify-content-between">
-        <div class="p-2">
+        <div class="p-3">
             <h1>Command list</h1>
         </div>
-        <div class="p-3">
-            <button class="btn btn-primary"
-                    routerLink='create'
-            >
-                ADD
-            </button>
-        </div>
+        
     </div>
 
-    <div class="panel-body">
-        <table class="table table-striped table-bordered">
+    <div class="panel-body panel-default">
+        <table class="table table-striped table-bordered ">
             <thead>
                 <tr>
                     <th>Firstname</th>
@@ -24,22 +18,28 @@
                     <th>Service Name</th>
                     <th>Phone Number</th>
                     <th>Panne description</th>
+                    <th>Date of command</th>
+                    <th>State</th>
+
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let Commande of commandes">
-                    <td>{{Commande.firstName}}</td>
+                    <td >{{Commande.firstName}}</td>
                     <td>{{Commande.lastName}}</td>
                     <td>{{Commande.email}}</td>
                     <td>{{Commande.adresse}}</td>
                     <td>{{Commande.nameservice}}</td>
                     <td>{{Commande.phone}}</td>
                     <td>{{Commande.pannedescription}}</td>
-                
-                    <td>
-                        <button (click)="deleteCommande(Commande.id)">Delete</button>
-                        <button (click)="EditCommande(Commande)">Edit</button> 
+                    <td>{{Commande.datedemmande}}</td>
+                    <td>{{Commande.state}}</td>
+                    <td class="text-center">
+                       
+                        <button class="btn btn-secondary" routerLink='/table/createClaim'>Claim</button> 
+                        <button class="btn btn-warning"  (click)="EditCommande(Commande)">Edit</button> 
+                        <button class="btn btn-danger" (click)="deleteCommande(Commande.id)">Cancel</button>
                     </td>
                    
                 </tr>

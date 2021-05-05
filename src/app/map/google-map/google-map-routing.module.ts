@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: GoogleMapComponent,
     data: {
-      breadcrumb: 'Google Map',
+      breadcrumb: 'Location',
       status: true
     }
   }
