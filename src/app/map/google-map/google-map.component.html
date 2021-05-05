@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm">
     <app-card [title]="'Markers Map'" [classHeader]="true">
       <span class="code-header"> Location in Mahdia</span>
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="6">
@@ -9,16 +9,4 @@
     </app-card>
   </div>
 
-  <div class="col-sm-6">
-    <app-card [title]="'Markers Map'" [classHeader]="true">
-      <span class="code-header">Location in Canada  </span>
-      <agm-map [latitude]="latA" [longitude]="lngA" [zoom]="6">
-        
-        <agm-marker [latitude]="latA" [longitude]="lngA"></agm-marker>
-        
-
-      </agm-map>
-    </app-card>
-  </div>
  
-</div>
