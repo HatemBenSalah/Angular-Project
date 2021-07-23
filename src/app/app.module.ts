@@ -16,6 +16,7 @@ import { UserSettingComponent } from './profil/user-setting/user-setting.compone
 import { TokenInterceptor } from './Token/TokenInterceptor';
 import { AdminboardComponent } from './adminboard/adminboard.component';
 import { EmployeeboardComponent } from './employeeboard/employeeboard.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 
 @NgModule({

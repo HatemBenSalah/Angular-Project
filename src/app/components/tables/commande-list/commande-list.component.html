@@ -8,12 +8,10 @@
     </div>
 
     <div class="panel-body panel-default">
-        <table class="table table-striped table-bordered ">
+        <table class="table table-striped table-bordered sticky">
             <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
+                   
                     <th>Adress</th>
                     <th>Service Name</th>
                     <th>Phone Number</th>
@@ -26,9 +24,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let Commande of commandes">
-                    <td >{{Commande.firstName}}</td>
-                    <td>{{Commande.lastName}}</td>
-                    <td>{{Commande.email}}</td>
+                  
                     <td>{{Commande.adresse}}</td>
                     <td>{{Commande.nameservice}}</td>
                     <td>{{Commande.phone}}</td>
@@ -37,9 +33,9 @@
                     <td>{{Commande.state}}</td>
                     <td class="text-center">
                        
-                        <button class="btn btn-secondary" routerLink='/table/createClaim'>Claim</button> 
-                        <button class="btn btn-warning"  (click)="EditCommande(Commande)">Edit</button> 
-                        <button class="btn btn-danger" (click)="deleteCommande(Commande.id)">Cancel</button>
+                        <button class="btn btn-secondary" (click)="createClaim(Commande)" [disabled]="Commande.state==='In progress' "routerLink='/table/createClaim'>Claim</button> 
+                        <button class="btn btn-warning"  [disabled]="Commande.state==='Accepted' "(click)="EditCommande(Commande)">Edit</button> 
+                        <button class="btn btn-danger"  [disabled]="Commande.state==='Accepted' "(click)="deleteCommande(Commande.id)">Cancel</button>
                     </td>
                    
                 </tr>
@@ -50,47 +46,35 @@
 <div *ngIf="edition">
 <h3>Edit Commande</h3>
 <div [hidden]="submitted" style="width: 400px;" >
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="name">First Name</label>
-            <input type="text" class="form-control" id="firstName" required [(ngModel)]="CommandeToEdit.firstName" name="firstName">
-        </div>
+    <form (ngSubmit)="onSubmit()" #monForm=ngForm>
+       
+       
 
         <div class="form-group">
-            <label for="name">Last Name</label>
-            <input type="text" class="form-control" id="lastName" required [(ngModel)]="CommandeToEdit.lastName" name="lastName"/>
+            <label for="name">Phone Number</label>
+            <input type="text" class="form-control" id="Phone" required [(ngModel)]="CommandeToEdit.phone" name="Phone" required #Phone="ngModel" [class.is-invalid]="Phone.invalid && Phone.touched">
+            <small class="text-danger" [class.d-none]="Phone.valid || Phone.untouched">Phone is required filed</small>
         </div>
-
         <div class="form-group">
-            <label for="name">Email </label>
-            <input type="text" class="form-control" id="email" required [(ngModel)]="CommandeToEdit.email" name="email">
+            <label for="name">Panne description</label>
+            <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="CommandeToEdit.pannedescription" name="pannedescription" required #pannedescription="ngModel" [class.is-invalid]="pannedescription.invalid && pannedescription.touched">
+            <small class="text-danger" [class.d-none]="pannedescription.valid || pannedescription.untouched">Panne description is required filed</small>
         </div>
-
-
-        <div class="form-group">
-            <label for="name">Adress</label>
-            <input type="text" class="form-control" id="Adress" required [(ngModel)]="CommandeToEdit.adresse" name="Adress">
-        </div>
-
         <div class="form-group">
             <label for="name"> service name </label>
-            <select class="form-select"  name="service" id="service-select" [(ngModel)]="CommandeToEdit.nameservice">
+            <select class="form-select"  name="service" id="service-select" required [(ngModel)]="CommandeToEdit.nameservice">
                
                     <option *ngFor="let o of options">
                         {{o.name}}
                      </option>
             </select>    
         </div>
+        <div class="form-group">
+        <small class="text-danger" *ngIf=!monForm.valid>Empty filed</small>
+        </div>
+        <button type="submit" class="btn btn-success"(click)="done()" [disabled]=!monForm.valid>Submit </button>
+        <button type="button" class="btn btn-default ml-2" (click)="cancelEditCommand()">Cancel</button>
 
-        <div class="form-group">
-            <label for="name">Phone Number</label>
-            <input type="text" class="form-control" id="Phone" required [(ngModel)]="CommandeToEdit.phone" name="Phone">
-        </div>
-        <div class="form-group">
-            <label for="name">Panne description</label>
-            <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="CommandeToEdit.pannedescription" name="pannedescription">
-        </div>
-        <button type="submit" class="btn btn-success"(click)="done()">Submit</button>
     </form>
 </div>
 

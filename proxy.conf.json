@@ -7,6 +7,14 @@
       "target": "http://localhost:8686",
       "secure": false
     },
+    "/api/authemployee": {
+      "target": "http://localhost:8686",
+      "secure": false
+    },
+    "/api/authAdmin": {
+      "target": "http://localhost:8686",
+      "secure": false
+    },
     "/EmployeeController": {
       "target": "http://localhost:8686",
       "secure": false
@@ -16,6 +24,11 @@
       "secure": false
     },
     "/UserController": {
+      "target": "http://localhost:8686",
+      "secure": false
+    }
+    ,
+    "/InterventionController": {
       "target": "http://localhost:8686",
       "secure": false
     }

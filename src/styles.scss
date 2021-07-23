@@ -28,9 +28,7 @@ p {
   padding-right: 20px;
 }
 
-/**====== Custom css end ======**/
-/**  ===================== Main-body css start
-==========================  **/
+
 
 .main-body .page-wrapper {
   padding: 1.8rem;
@@ -59,9 +57,6 @@ p {
   }
 }
 
-/**====== Main-body css end ======**/
-/**  ===================== Card-Layout css start
-==========================  **/
 
 .card {
   border-radius: 2px;
@@ -251,8 +246,7 @@ p {
   color: #2c3e50;
 }
 
-/**======  Card-Layout css end ======**/
-/*======= Typography css start ========*/
+
 
 .typography {
   h1, h2, h3, h4, h5, h6 {
@@ -289,9 +283,7 @@ p {
   float: left;
 }
 
-/*======= Typography css end ========*/
-/**  ===================== Modal css start
-==========================  **/
+
 
 .modal {
   z-index: 99999999999;
@@ -321,9 +313,6 @@ p {
   }
 }
 
-/**====== Modal css end ======**/
-/**  ===================== Notification css start
-==========================  **/
 
 .location-selector {
   width: 100%;
@@ -656,14 +645,12 @@ button.close {
     margin: -7px 0 0 -15px;
     width: 30px;
     height: 20px;
-    background: url("assets/images/tooltip/tooltip1.svg") center center no-repeat;
     background-size: 100%;
   }
 }
 
 .tooltip-content3 {
   position: absolute;
-  background: url("assets/images/tooltip/shape1.svg") center bottom no-repeat;
   background-size: 100% 100%;
   z-index: 9999;
   width: 200px;
@@ -13197,13 +13184,9 @@ td.highlight {
 }
 
 td.details-control {
-  background: url("assets/images/details_open.png") no-repeat center center;
   cursor: pointer;
 }
 
-tr.shown td.details-control {
-  background: url("assets/images/details_close.png") no-repeat center center;
-}
 
 #row-select .selected, #row-delete .selected {
   background-color: #0073aa;
@@ -14869,12 +14852,9 @@ table {
   margin-left: 10px;
 }
 
-/*======= Alert css ends ===========*/
-/* ======================================= Authentication-page css start ========================================= */
 
 .common-img-bg {
   background-size: cover;
-  background: url('assets/images/bg.jpg') no-repeat center center fixed;
   height: 100%;
 }
 
@@ -15251,7 +15231,6 @@ table {
 ==========================  **/
 
 .chat-bg {
-  background-image: url("assets/images/chat-bg.jpg");
   background-size: cover;
   background-blend-mode: overlay;
   background-color: rgba(255, 255, 255, 0.45);
@@ -21092,7 +21071,6 @@ span.value {
       border-top: 9px solid #e74c3c;
       transition: all ease-in 0.3s;
       &:before {
-        background: url("assets/images/complete.png") no-repeat;
         position: absolute;
         top: 5px;
         right: 5px;

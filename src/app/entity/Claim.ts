@@ -1,3 +1,5 @@
+import { Commande } from "./Commande";
+import { Employee } from "./Employee";
 import { User } from "./User";
 
 export class Claim {
@@ -9,8 +11,12 @@ export class Claim {
     nameservice: string;
     claimdescription: string;
     phone :number;
-    user:User;
+    acceptationdate:Date;
     active: boolean;
     datedemmande:Date;
     state:String;
+    employee:Employee;
+    user:User;
+    commande:Commande;
+    interventionstate:string;
 }

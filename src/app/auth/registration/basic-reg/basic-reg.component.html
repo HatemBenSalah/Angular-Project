@@ -1,16 +1,14 @@
 <body><section class="login p-fixed d-flex text-center bg-primary ">
-  <!-- starts -->
   <div class="auth-fluid">
     <div class="row">
       <div class="col-sm-12">
-        <!-- Authentication card start -->
         <div class="login-card card-body auth-body">
           <form   class="md-float-material"   (ngSubmit)="RegisterIn()">
             
             <div class="auth-box">
               <div class="row m-b-20">
                 <div class="col-md-12">
-                  <h3 class="text-center txt-primary">Register In {{message}}</h3>
+                  <h3 class="text-center txt-primary">Register In </h3>
                 </div>
               </div>
               <hr/>
@@ -74,53 +72,24 @@
                 <span class="md-line"></span>
               </div>
               <br>
-              <div class="input-group">
-                
-              
-                <div class="dropdown">
-                  
-                  
-                </div>
-                <span class="md-line"></span>
-              </div>
-              <div class="row m-t-25 text-left">
-                <div class="col-md-12">
-                  <div class="checkbox-fade fade-in-primary">
-                    <label>
-                      <input type="checkbox" name="ConditionsCheckbox">
-                      <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                      <span class="text-inverse">I read and accept <a href="javascript:;">Terms &amp; Conditions.</a></span>
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="checkbox-fade fade-in-primary">
-                    <label>
-                      <input type="checkbox" name="HappytojoinCheckbox">
-                      <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                      <span class="text-inverse">I'am happy to join HMS</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
+             
               <div class="row m-t-30">
                 <div class="col-md-12">
-                  <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" >Sign in now.</button>
+                  <label class="text-danger"> {{message }} {{errorMessage}}</label>
+
+                  <button type="button" (click)="RegisterIn()" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" >Sign in now.</button>
+                  <span class="text-inverse">You already have account ? <a href="javascript:;" routerLink="/auth/login">Sign in now.</a></span>
+
                 </div>
               </div>
               <hr/>
               
             </div>
           </form>
-          <!-- end of form -->
         </div>
-        <!-- Authentication card end -->
       </div>
-      <!-- end of col-sm-12 -->
     </div>
-    <!-- end of row -->
   </div>
-  <!-- end of -->
   
 </section>
 </body>

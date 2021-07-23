@@ -9,6 +9,8 @@ import { CommandeService } from 'src/app/service/commande.service';
 import { Commande } from 'src/app/entity/Commande';
 import { TokenStorageService } from 'src/app/service/TokenStorageService';
 import{User} from 'src/app/entity/User';
+import { Intervention } from '../entity/Intervention';
+import { InterventionService } from '../service/intervention.service';
 
 @Component({
   selector: 'app-employeeboard',
@@ -20,56 +22,94 @@ export class EmployeeboardComponent implements OnInit {
   editclaim:boolean=false;
   editCommand:boolean=false;
   opencommandlist:boolean=true;
+  openAcceptedCommande:boolean=false;
+  openAcceptedClaim:boolean=false;
+  openIntervention:boolean=false;
+
   openclaim:boolean=false;
 
   employees: Employee[];
 
   ClaimToEdit:any={};
+  InterventionToEdit:any={};
+
   savedToEditClaim:any={};
+  savedToEditIntervention:any={};
+
   savedToEditEmployee:any={};
    refrech:boolean;
    options = [
      { name: "Plomberie", value: 1 },
      { name: "Jardinage", value: 2 },
      { name: "Plomberie", value: 3 },
-     { name: "Maçonnerie générale", value: 4 },
+     { name: "General masonry", value: 4 },
      { name: "Penture", value: 5 },
-     { name: "Électricité", value: 6 }
+     { name: "Electricite", value: 6 },
+     { name: "Charpenterie", value: 7 },
+     { name: "Menage", value: 8 }
    ]
    email="";
+   domaine="";
    Claims: Claim[];
- 
+   Interventions: Intervention[];
+   CommandeID: Intervention[];
+
    commandes: Commande[];
+   acceptedcommandes: Commande[];
+   acceptedclaims: Claim[];
+   acceptedinterventions: Intervention[];
+
    CommandeToEdit:any={};
    savedToEditCommande:any={};
-   user:User =new User();
    employee: Employee = new Employee();
+   user:User =new User();
 
-   constructor(private employeeService: EmployeeService,private CommandeService: CommandeService ,private registrationservice: RegistrationService,private ClaimService: ClaimService, private tokenStorageService :TokenStorageService) {}
+
+   constructor(private intervenrionService :InterventionService, private employeeService: EmployeeService,private CommandeService: CommandeService ,private registrationservice: RegistrationService,private ClaimService: ClaimService, private tokenStorageService :TokenStorageService) {}
  
    ngOnInit() {
      this.reloadData();
      this. email=localStorage.getItem('email');
- 
+    this.employee=this.tokenStorageService.getUser();
+    this.domaine=this.employee.employeservice;
    }
  
    reloadData() {
-    
-    this.ClaimService.getallClaim().subscribe(data => {
+    this.intervenrionService.getInterventionByEmployeeService(this.tokenStorageService.getUser().employeservice).subscribe(data => {
+      this.Interventions = data;
+    });
+    this.intervenrionService.getInterventionbyemployeeId(this.tokenStorageService.getUser().id).subscribe(data => {
+      this.acceptedinterventions = data;
+    });
+    this.ClaimService.getClaimByEmployeeService(this.tokenStorageService.getUser().employeservice).subscribe(data => {
       this.Claims = data;
     });
-     this.CommandeService.getAllCommande().subscribe(data => {
+    this.ClaimService.getClaimbyemployeeId(this.tokenStorageService.getUser().id).subscribe(data => {
+      this.acceptedclaims = data;
+    });
+     this.CommandeService.getCommandebyservice(this.tokenStorageService.getUser().employeservice).subscribe(data => {
        this.commandes = data;
      });
-     this.employeeService.getEmployee().subscribe(data => {
-      this.employees = data;
+
+     this.CommandeService.getCommandebyemployee(this.tokenStorageService.getUser().id).subscribe(data => {
+      this.acceptedcommandes = data;
     });
+
+
+    
+   
    }
+
    NavigateToCommande()
    {  this.submitted = false;
      this.openclaim=false;
      this.opencommandlist=true;
      this.editCommand=false;
+     this.editclaim=false;
+     this. openAcceptedCommande=false;
+     this.openAcceptedClaim=false;
+     this.openIntervention=false;
+
 
    }
    NavigateToClaim()
@@ -77,6 +117,9 @@ export class EmployeeboardComponent implements OnInit {
      this.opencommandlist=false;
      this.openclaim=true;
      this.editCommand=false;
+     this. openAcceptedCommande=false;
+     this.openAcceptedClaim=false;
+     this.openIntervention=false;
 
  
    }
@@ -84,11 +127,47 @@ export class EmployeeboardComponent implements OnInit {
    { this.submitted = false;
     this.opencommandlist=false;
     this.openclaim=false;
-
     this.editCommand=false;
+    this. openAcceptedCommande=false;
+    this.openAcceptedClaim=false;
+    this.openIntervention=false;
+
 
    }
- 
+ NavigateToAcceptedCommande(){
+  this.submitted = false;
+  this.openclaim=false;
+  this.opencommandlist=false;
+  this.editCommand=false;
+  this.editclaim=false;
+ this. openAcceptedCommande=true;
+ this.openAcceptedClaim=false;
+ this.openIntervention=false;
+
+ }
+ NavigateToAcceptedClaim(){
+  this.submitted = false;
+  this.openclaim=false;
+  this.opencommandlist=false;
+  this.editCommand=false;
+  this.editclaim=false;
+ this. openAcceptedCommande=false;
+ this.openAcceptedClaim=true;
+ this.openIntervention=false;
+
+ }
+ NavigateToIntervention(){
+  this.submitted = false;
+  this.openclaim=false;
+  this.opencommandlist=false;
+  this.editCommand=false;
+  this.editclaim=false;
+ this. openAcceptedCommande=false;
+ this.openAcceptedClaim=false;
+ this.openIntervention=true;
+
+
+ }
    deleteCommande(id: number) {
     
      this.CommandeService.deleteCommande(id)
@@ -105,6 +184,8 @@ export class EmployeeboardComponent implements OnInit {
      Object.assign(this.CommandeToEdit, cm);
      this.editCommand=true;
      this.opencommandlist=false;
+     this.openIntervention=false;
+
    }
    done(){
      console.log(this.CommandeToEdit)
@@ -136,6 +217,8 @@ export class EmployeeboardComponent implements OnInit {
       console.log(cm)
        this.openclaim=false;
       this.editclaim=true;
+      this.openIntervention=false;
+
       this.savedToEditClaim =cm ;
       Object.assign(this.ClaimToEdit, cm);
      
@@ -165,15 +248,76 @@ cancelClaim(){
   this.openclaim=true;
 }
 AcceptCommand(cm){
+  let localtime: Date = new Date();  
   this.savedToEditCommande =cm ;
   Object.assign(this.CommandeToEdit, cm);
-  this.CommandeToEdit.state="Accepted"
-  
+  this.CommandeToEdit.state="Accepted";
+  this.CommandeToEdit.acceptationdate=localtime;
+
+  this.CommandeToEdit.employee=this.employee;
   this.CommandeService.updateCommande(this.CommandeToEdit).subscribe(data =>{
     this.reloadData();
   });
 
  }
+
+ AcceptClaimd(cm){
+  let localtime: Date = new Date();  
+  this.savedToEditClaim =cm ;
+  Object.assign(this.ClaimToEdit, cm);
+  this.ClaimToEdit.state="Accepted";
+  this.ClaimToEdit.acceptationdate=localtime;
+
+  this.ClaimToEdit.employee=this.employee;
+
+  
+  this.ClaimService.updateClaim(this.ClaimToEdit).subscribe(data =>{
+    this.reloadData();
+  });
+
+ }
+
+ 
+ AcceptIntervention(cm){
+  let localtime: Date = new Date();  
+  
+  this.savedToEditIntervention =cm ;
+  Object.assign(this.InterventionToEdit, cm);
+  this.InterventionToEdit.interventionstate="Done";
+  this.InterventionToEdit.dateintervention=localtime;
+
+  this.InterventionToEdit.employee=this.employee;
+  this.InterventionToEdit.commande=cm;
+  this.InterventionToEdit.acceptationdate=cm.acceptationdate;
+  this.CommandeService.updateCommande(this.InterventionToEdit).subscribe(data =>{
+  this.reloadData();
+});
+  this.intervenrionService.createIntervention(this.InterventionToEdit).subscribe(data =>{
+    this.reloadData();
+  });
+
+ }
+
+ AcceptInterventionClaim(cm){
+  let localtime: Date = new Date();  
+  
+  this.savedToEditIntervention =cm ;
+  Object.assign(this.InterventionToEdit, cm);
+  this.InterventionToEdit.interventionstate="Done";
+  this.InterventionToEdit.dateintervention=localtime;
+
+  this.InterventionToEdit.employee=this.employee;
+  this.InterventionToEdit.claim=cm;
+  this.InterventionToEdit.acceptationdate=cm.acceptationdate;
+  this.ClaimService.updateClaim(this.InterventionToEdit).subscribe(data =>{
+  this.reloadData();
+});
+  this.intervenrionService.createIntervention(this.InterventionToEdit).subscribe(data =>{
+    this.reloadData();
+  });
+
+ }
+ 
  Logout(){
   this.tokenStorageService.signOut();
   

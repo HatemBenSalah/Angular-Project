@@ -1,5 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard } from '../AuthGard/AuthGuard';
+import { AuthModule } from './auth.module';
+
 
 const routes: Routes = [
   {
@@ -9,17 +12,22 @@ const routes: Routes = [
       status: false
     },
     children: [
-      {
-        path:'',
-        redirectTo:'login'
-      },
+     
       {
         path: 'login',
-        loadChildren: () => import('./login/basic-login/basic-login.module').then(m => m.BasicLoginModule)
+        loadChildren: () => import('./login/basic-login/basic-login.module').then(m => m.BasicLoginModule) 
       },
       {
         path: 'registration',
-        loadChildren: () => import('./registration/basic-reg/basic-reg.module').then(m => m.BasicRegModule)
+        loadChildren: () => import('./registration/basic-reg/basic-reg.module').then(m => m.BasicRegModule),
+      },
+      {
+        path: 'loginadmin',
+        loadChildren: () => import('./login-admin/basic-loginadmin.module').then(m => m.BasicLoginAdminModule),
+      },
+      {
+        path: 'loginemployee',
+        loadChildren: () => import('./login-employee/basic-loginemployee.module').then(m => m.BasicLoginEmployeeModule),
       }
     ]
   }

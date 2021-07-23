@@ -17,7 +17,10 @@ export class EmployeeListComponent implements OnInit {
      { name: "Plomberie", value: 3 },
      { name: "Maçonnerie générale", value: 4 },
      { name: "Penture", value: 5 },
-     { name: "Électricité", value: 6 }
+     { name: "Electricite", value: 6 },
+     { name: "Charpenterie", value: 7 },
+     { name: "Menage", value: 8 }
+ 
    ]
    employees: Employee[];
    EmployeeToEdit:any={};

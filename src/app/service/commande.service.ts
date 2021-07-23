@@ -3,6 +3,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Response, ResponseContentType, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Employee } from '../entity/Employee';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,23 @@ export class CommandeService {
       map(this.extractData),
       catchError(this.handleError));
   }
+
+  getCommandebyservice(service){
+    let headers = new HttpHeaders();
+     headers = headers.set('Content-Type', 'application/json');
+    return this.http.get('/CommandeController/getCommandebyservice/'+service,{headers: headers,responseType: 'json'}).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+
+  getCommandebyemployee(id){
+    let headers = new HttpHeaders();
+     headers = headers.set('Content-Type', 'application/json');
+    return this.http.get('/CommandeController/getCommandebyemployee/'+id,{headers: headers,responseType: 'json'}).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
+  
   getAllCommande(){
     let headers = new HttpHeaders();
      headers = headers.set('Content-Type', 'application/json');
@@ -46,6 +64,7 @@ export class CommandeService {
       map(this.extractData),
       catchError(this.handleError));
   }
+ 
 
   deleteCommande(id: number) {
     return this.http.post('/CommandeController/deleteCommande',id).pipe(

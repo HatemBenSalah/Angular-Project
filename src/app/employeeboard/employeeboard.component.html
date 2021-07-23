@@ -13,14 +13,23 @@
         <li class="nav-item">
           <a class="nav-link" (click)="NavigateToClaim()">All Claims</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="NavigateToAcceptedCommande()">Accepted Command </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="NavigateToAcceptedClaim()">Accepted Claim </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="NavigateToIntervention()">All Interventions </a>
+          </li>
         
        
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <div class=" mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-           {{email}}
+        <div class=" mr-sm-2" >
+        Service:  {{domaine}}  : {{email}}
         </div>
-        <img src="./assets/images/logout.png" class=" my-2 my-sm-0" (click)="Logout()" routerLink='/auth/login'>
+        <img src="./assets/images/logout.png" class=" my-2 my-sm-0" (click)="Logout()" routerLink='/auth/loginemployee'>
       </form>
     </div>
   </nav>
@@ -40,14 +49,13 @@
     </div>
   
     <div class="panel-body">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped table-bordered sticky" >
             <thead>
                 <tr>
                     <th>Firstname</th>
                     <th>Lastname</th>
                     <th>Email</th>
                     <th>Adress</th>
-                    <th>Service Name</th>
                     <th>Phone Number</th>
                     <th>Panne description</th>
                     <th>State</th>
@@ -60,7 +68,6 @@
                     <td>{{Commande.lastName}}</td>
                     <td>{{Commande.email}}</td>
                     <td>{{Commande.adresse}}</td>
-                    <td>{{Commande.nameservice}}</td>
                     <td>{{Commande.phone}}</td>
                     <td>{{Commande.pannedescription}}</td>
                     <td>{{Commande.state}}</td>
@@ -68,7 +75,7 @@
                     <td class="text-center">
                         <button class="btn btn-danger" (click)="deleteCommande(Commande.id)">Delete</button>
                         <button  class="btn btn-warning" (click)="EditCommande(Commande)">Edit</button> 
-                        <button class="btn btn-success" (click)="AcceptCommand(Commande)">Accept</button> 
+                        <button class="btn btn-success"  [disabled]="Commande.state==='Accepted' "(click)="AcceptCommand(Commande)">Accept</button> 
 
                     </td>
                    
@@ -81,30 +88,12 @@
  
 
   <div class="ml-4 mr-4"  *ngIf="editCommand">
-    <h3>Edit Commande</h3>
+    <h3>Edit Command</h3>
     <div style="width: 400px;" >
-        <form (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="name">First Name</label>
-                <input type="text" class="form-control" id="firstName" required [(ngModel)]="CommandeToEdit.firstName" name="firstName">
-            </div>
+        <form (ngSubmit)="onSubmit()"  #monForm=ngForm>
+            
     
-            <div class="form-group">
-                <label for="name">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required [(ngModel)]="CommandeToEdit.lastName" name="lastName"/>
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Email </label>
-                <input type="text" class="form-control" id="email" required [(ngModel)]="CommandeToEdit.email" name="email">
-            </div>
-    
-    
-            <div class="form-group">
-                <label for="name">Adress</label>
-                <input type="text" class="form-control" id="Adress" required [(ngModel)]="CommandeToEdit.adresse" name="Adress">
-            </div>
-    
+            
             <div class="form-group">
                 <label for="name"> service name </label>
                 <select class="form-select"  name="service" id="service-select" [(ngModel)]="CommandeToEdit.nameservice">
@@ -114,16 +103,10 @@
                          </option>
                 </select>    
             </div>
-    
             <div class="form-group">
-                <label for="name">Phone Number</label>
-                <input type="text" class="form-control" id="Phone" required [(ngModel)]="CommandeToEdit.phone" name="Phone">
-            </div>
-            <div class="form-group">
-                <label for="name">Panne description</label>
-                <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="CommandeToEdit.pannedescription" name="pannedescription">
-            </div>
-            <button type="submit" class="btn btn-success"(click)="done()">Submit</button>
+                <small class="text-danger" *ngIf=!monForm.valid>Empty filed</small>
+                </div>
+            <button type="submit" class="btn btn-success"(click)="done()" [disabled]=!monForm.valid>Submit</button>
             <button type="button" class="btn btn-default ml-2" (click)="cancelCommande()">Cancel</button>
 
         </form>
@@ -155,7 +138,6 @@
                       <th>Lastname</th>
                       <th>Email</th>
                       <th>Adress</th>
-                      <th>Service Name</th>
                       <th>Phone Number</th>
                       <th>Claim description</th>
                       <th>State</th>
@@ -168,16 +150,15 @@
                       <td>{{Claim.lastName}}</td>
                       <td>{{Claim.email}}</td>
                       <td>{{Claim.adresse}}</td>
-                      <td>{{Claim.nameservice}}</td>
                       <td>{{Claim.phone}}</td>
                       <td>{{Claim.claimdescription}}</td>
-                      <td>{{Claim.State}}</td>
+                      <td>{{Claim.state}}</td>
 
                   
                       <td class="text-center">
                            <button class="btn btn-danger" (click)="deleteClaim(Claim.id)">Delete</button>
                            <button  class="btn btn-warning" (click)="EditClaim(Claim)">Edit</button> 
-                           <button class="btn btn-success" (click)="AcceptCommand()">Accept</button> 
+                           <button class="btn btn-success"  [disabled]="Claim.state==='Accepted' "(click)="AcceptClaimd(Claim)">Accept</button> 
 
                       </td>
                      
@@ -190,28 +171,7 @@
   <div  class="ml-4 mr-4"  *ngIf="editclaim">
     <h3>Edit Claim</h3>
     <div  >
-        <form  style="width: 400px;"  >
-            <div class="form-group">
-                <label for="name">First Name</label>
-                <input type="text" class="form-control" id="firstName" required [(ngModel)]="ClaimToEdit.firstName" name="firstName">
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required [(ngModel)]="ClaimToEdit.lastName" name="lastName"/>
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Email </label>
-                <input type="text" class="form-control" id="email" required [(ngModel)]="ClaimToEdit.email" name="email">
-            </div>
-    
-    
-            <div class="form-group">
-                <label for="name">Adress</label>
-                <input type="text" class="form-control" id="Adress" required [(ngModel)]="ClaimToEdit.adresse" name="Adress">
-            </div>
-    
+        <form  style="width: 400px;"  #monForm=ngForm >
             <div class="form-group">
                 <label for="name"> service name </label>
                 <select class="form-select"  name="service" id="service-select" [(ngModel)]="ClaimToEdit.nameservice">
@@ -221,16 +181,10 @@
                          </option>
                 </select>    
             </div>
-    
             <div class="form-group">
-                <label for="name">Phone Number</label>
-                <input type="text" class="form-control" id="Phone" required [(ngModel)]="ClaimToEdit.phone" name="Phone">
-            </div>
-            <div class="form-group">
-                <label for="name">Claim description</label>
-                <input type="text" class="form-control" id="Claimdescription" required [(ngModel)]="ClaimToEdit.claimdescription" name="pannedescription">
-            </div>
-            <button type="submit" class="btn btn-success"(click)="doneClaim()">Submit</button>
+                <small class="text-danger" *ngIf=!monForm.valid>Empty filed</small>
+                </div>
+            <button type="submit" class="btn btn-success"(click)="doneClaim()" [disabled]=!monForm.valid>Submit</button>
             <button type="button" class="btn btn-default ml-2" (click)="cancelClaim()">Cancel</button>
         </form>
     </div>
@@ -239,3 +193,157 @@
     </div>
  
    
+
+    <br> <br>
+
+    <div class="ml-4 mr-4" *ngIf="openAcceptedCommande">
+    
+        <div class="panel panel-default ">
+      
+        <div class="d-flex justify-content-between">
+            <div class="p-2">
+                <h1>Accepted Commands </h1>
+            </div>
+            
+        </div>
+      
+        <div class="panel-body">
+            <table class="table table-striped table-bordered sticky" >
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Adress</th>
+                        <th>Date demand</th>
+                        <th>Date Acceptation</th>
+
+                        <th>Phone Number</th>
+                        <th>Panne description</th>
+                     
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Commande of acceptedcommandes">
+                        <td>{{Commande.firstName}}</td>
+                        <td>{{Commande.lastName}}</td>
+                        <td>{{Commande.email}}</td>
+                        <td>{{Commande.adresse}}</td>
+                        <td>{{Commande.datedemmande}}</td>
+                        <td>{{Commande.acceptationdate}}</td>
+                        <td>{{Commande.phone}}</td>
+                        <td>{{Commande.pannedescription}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-danger" (click)="deleteCommande(Commande.id)">Delete</button>
+                            <button class="btn btn-success" [disabled]="Commande.interventionstate==='Done' "(click)="AcceptIntervention(Commande)">Done</button> 
+
+    
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      </div>
+
+ 
+
+      <div class="ml-4 mr-4" *ngIf="openIntervention">
+      
+          <div class="panel panel-default ">
+        
+          <div class="d-flex justify-content-between">
+              <div class="p-2">
+                  <h1 class="text-success">Interventions Done </h1>
+              </div>
+              
+          </div>
+        
+          <div class="panel-body">
+              <table class="table table-striped table-bordered sticky" >
+                  <thead>
+                      <tr>
+                          <th>Client Lastname</th>                     
+                          <th>Adress</th>
+                          <th>Panne description</th>
+                          <th>Date demand</th>
+                          <th>Date Acceptation</th>
+                          <th>Date Intervention</th>
+  
+                          <th>Phone Number</th>
+                         
+                       
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let Intervention of acceptedinterventions">
+                          <td>{{Intervention.lastName}}</td>
+                          <td>{{Intervention.adresse}}</td>
+                          <td>{{Intervention.pannedescription}}</td>
+                          <td>{{Intervention.datedemmande}}</td>
+                          <td>{{Intervention.acceptationdate}}</td>
+                          <td>{{Intervention.dateintervention}}</td>
+                          <td>{{Intervention.phone}}</td>
+
+                         
+                         
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+        </div>
+  
+
+
+      
+
+      <div class="ml-4 mr-4" *ngIf="openAcceptedClaim">
+      
+          <div class="panel panel-default ">
+        
+          <div class="d-flex justify-content-between">
+              <div class="p-2">
+                  <h1>Accepted Claims </h1>
+              </div>
+              
+          </div>
+        
+          <div class="panel-body">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Adress</th>
+                        <th>Date demand</th>
+                        <th>Date Acceptation</th>
+                        <th>Phone Number</th>
+                        <th>Claim description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Claim of acceptedclaims">
+                        <td>{{Claim.firstName}}</td>
+                        <td>{{Claim.lastName}}</td>
+                        <td>{{Claim.email}}</td>
+                        <td>{{Claim.adresse}}</td>
+                        <td>{{Claim.datedemmande}}</td>
+                        <td>{{Claim.acceptationdate}}</td>
+                        <td>{{Claim.phone}}</td>
+                        <td>{{Claim.claimdescription}}</td>
+  
+                         <td class="text-center">
+                              <button class="btn btn-danger" (click)="deleteCommande(Claim.id)">Delete</button>
+
+                          </td>
+                         
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div><br>
+        </div>

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Response, ResponseContentType, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../entity/User';
+import { Employee } from '../entity/Employee';
 @Injectable({
     providedIn: 'root'
   })
@@ -14,6 +15,9 @@ export class RegistrationService{
         return this.http.post<any>("/api/auth/signup",user);
 
     }
-    
+    registerEmployee(employee:Employee):Observable<any>{
+        return this.http.post<any>("/api/authemployee/signup",employee);
+
+    }
 
 }

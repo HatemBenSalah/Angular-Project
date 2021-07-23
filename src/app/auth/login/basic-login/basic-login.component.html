@@ -8,7 +8,7 @@
             <div class="auth-box">
               <div class="row m-b-20">
                 <div class="col-md-12">
-                  <h3 class="text-left txt-primary" class="centrer">Sign In{{errorMessage}}</h3>
+                  <h3 class="text-left txt-primary" class="centrer">Sign In</h3>
                 </div>
               </div>
               <hr/>
@@ -29,11 +29,12 @@
                 <span class="md-line"></span>
               </div>
               <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required filed</small>
-           
               <div class="row m-t-30">
                 <div class="col-md-12">
-                  <label class="text-danger"></label>
+                  <label class="text-danger"> {{errorMessage}}</label>
                   <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)=checkLogin()>Sign in</button>
+                  <span class="text-inverse">You don't have account ? <a href="javascript:;" routerLink="/auth/registration">Register now.</a></span>
+
                 </div>
               </div>
               <hr/>

@@ -30,13 +30,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let Employee of employees">
-                    <td>{{Employee.employeName}}</td>
-                    <td>{{Employee.employeLastname}}</td>
-                    <td>{{Employee.employeemail}}</td>
+                    <td>{{Employee.firstName}}</td>
+                    <td>{{Employee.lastName}}</td>
+                    <td>{{Employee.email}}</td>
                     <td>{{Employee.employeservice}}</td>
-                    <td>{{Employee.employephone}}</td>
-                    <td>{{Employee.employecin}}</td>
-                    <td>{{Employee.employeepassword}}</td>
+                    <td>{{Employee.phone}}</td>
+                    <td>{{Employee.cin}}</td>
+                    <td>{{Employee.password}}</td>
                 
                     <td>
                         <button (click)="deleteEmployee(Employee.id)">Delete</button>
@@ -54,23 +54,23 @@
     <form (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="name">First Name</label>
-            <input type="text" class="form-control" id="employeName" required [(ngModel)]="EmployeeToEdit.employeName" name="employeName">
+            <input type="text" class="form-control" id="employeName" required [(ngModel)]="EmployeeToEdit.firstName" name="employeName">
         </div>
 
         <div class="form-group">
             <label for="name">Last Name</label>
-            <input type="text" class="form-control" id="employeLastname" required [(ngModel)]="EmployeeToEdit.employeLastname" name="employeLastname"/>
+            <input type="text" class="form-control" id="lastName" required [(ngModel)]="EmployeeToEdit.lastName" name="lastName"/>
         </div>
 
         <div class="form-group">
             <label for="name">Email </label>
-            <input type="text" class="form-control" id="employeemail" required [(ngModel)]="EmployeeToEdit.employeemail" name="employeemail">
+            <input type="text" class="form-control" id="email" required [(ngModel)]="EmployeeToEdit.email" name="email">
         </div>
 
 
         <div class="form-group">
             <label for="name">CIN</label>
-            <input type="number" class="form-control" id="employecin" required [(ngModel)]="EmployeeToEdit.employecin" name="employecin">
+            <input type="number" class="form-control" id="cin" required [(ngModel)]="EmployeeToEdit.cin" name="cin">
         </div>
 
         <div class="form-group">
@@ -85,11 +85,11 @@
 
         <div class="form-group">
             <label for="name">Phone Number</label>
-            <input type="text" class="form-control" id="employephone" required [(ngModel)]="EmployeeToEdit.employephone" name="employephone">
+            <input type="text" class="form-control" id="phone" required [(ngModel)]="EmployeeToEdit.phone" name="phone">
         </div>
         <div class="form-group">
             <label for="name">Password</label>
-            <input type="password" class="form-control" id="employeepassword" required [(ngModel)]="EmployeeToEdit.employeepassword" name="employeepassword">
+            <input type="password" class="form-control" id="password" required [(ngModel)]="EmployeeToEdit.password" name="password">
         </div>
         <button type="submit" class="btn btn-success"(click)="done()">Submit</button>
     </form>

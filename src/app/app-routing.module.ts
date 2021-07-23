@@ -3,12 +3,14 @@ import { Routes, RouterModule  } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import {AdminComponent} from './layouts/admin/admin.component';
 import {AuthComponent} from './layouts/auth/auth.component';
-import {AuthGuard } from './auth/AuthGuard';
+import {AuthGuard } from './AuthGard/AuthGuard';
 import {AdminboardComponent } from './adminboard/adminboard.component';
 
 import { EmployeeboardComponent } from './employeeboard/employeeboard.component';
-import { AuthGuardAdmin } from './auth/AuthGuardAdmin';
-import { AuthGuardEmployee } from './auth/AuthGuardEmployee';
+import { AuthGuardAdmin } from './AuthGard/AuthGuardAdmin';
+import { AuthGuardEmployee } from './AuthGard/AuthGuardEmployee';
+import { AuthGuardHomePage } from './AuthGard/AuthGuardHomePage';
+
 const routes: Routes = [
   
   {
@@ -30,8 +32,12 @@ const routes: Routes = [
         loadChildren: () => import('./map/google-map/google-map.module').then(m => m.GoogleMapModule), canActivate:[AuthGuard],
       },{
         path: '',
-        loadChildren: () => import('./profil/profil.module').then(m => m.ProfilModule),
+        loadChildren: () => import('./profil/profil.module').then(m => m.ProfilModule), canActivate:[AuthGuard],
 
+      },
+      {
+        path: '',
+        loadChildren: () => import('./aboutus/aboutus.module').then(m => m.AboutusModule), canActivate:[AuthGuard],
       }
     ]
   },
@@ -41,19 +47,15 @@ const routes: Routes = [
     children: [
       {
         path: 'auth',
-        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), 
       }
     ]
   },
   {
- path: '',
-    component: HomeComponent,
-    children: [
-      {
-        path: 'home',
-        loadChildren: () => import('./home/home.module').then(m => m.HomeModule), canDeactivate:[AuthGuard],
-      }
-    ]
+ path: 'home',
+    component: HomeComponent   ,canActivate:[AuthGuardHomePage] 
+       
+    
   },
   {path: 'admin',
     component: AdminboardComponent,canActivate:[AuthGuardAdmin]
@@ -69,9 +71,6 @@ const routes: Routes = [
     redirectTo: 'dashboard'
   },
   
-   
- 
- 
 ];
 
 @NgModule({

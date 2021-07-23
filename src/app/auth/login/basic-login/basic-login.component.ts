@@ -12,6 +12,7 @@ import {LoginService} from'../../../service/login.service';
 export class BasicLoginComponent implements OnInit {
   user: User = new User();
   errorMessage ="";
+
   isLoggedIn = false;
   isLoginFailed = false;
   roles: string[] = [];
@@ -31,7 +32,6 @@ export class BasicLoginComponent implements OnInit {
   }
 
   checkLogin(): void {
-   
     this.authService.login(this.user.email,this.user.password).subscribe(
       data => {
         console.log('basic-login: ', data);
@@ -46,12 +46,13 @@ export class BasicLoginComponent implements OnInit {
 
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.errorMessage = "Email or password incorrect ";
         this.isLoginFailed = true;
       }
     );
    
   }
+  
   
 
   reloadPage(): void {

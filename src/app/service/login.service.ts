@@ -28,6 +28,25 @@ export class LoginService{
       })); 
     }
 
+    loginAdmin(email: string, password: string): Observable<any> {
+      return this.http.post('/api/authAdmin/signin', {
+        email,
+        password,
+      }, this.httpOptions).pipe(map(data=>
+        {
+          return data;
+        })); 
+      }
+
+      loginEmployee(email: string, password: string): Observable<any> {
+        return this.http.post('/api/authemployee/signin', {
+          email,
+          password,
+        }, this.httpOptions).pipe(map(data=>
+          {
+            return data;
+          })); 
+        }
     private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
         console.error(error); // log to console instead
@@ -40,7 +59,6 @@ export class LoginService{
     }
   
     isLoggedInd(){
-    //  let token = localStorage.getItem('accessToken');
       if (this.tokenStorage.getToken()) {
         return true ;
       } else {

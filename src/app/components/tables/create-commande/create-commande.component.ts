@@ -16,12 +16,15 @@ export class CreateCommandeComponent implements OnInit {
     { name: "Plomberie", value: 1 },
     { name: "Jardinage", value: 2 },
     { name: "Paraboliste", value: 3 },
-    { name: "Maçonnerie générale", value: 4 },
+    { name: "General masonry", value: 4 },
     { name: "Penture", value: 5 },
-    { name: "Électricité", value: 6 },
-    { name: "Charpenterie", value: 7 }
+    { name: "Electricite", value: 6 },
+    { name: "Charpenterie", value: 7 },
+    { name: "Menage", value: 8 }
+
   ]
   submitted = false;
+  message=false;
 
   constructor(private commandeService: CommandeService, private tokenStorageService :TokenStorageService ) { }
 
@@ -44,6 +47,13 @@ export class CreateCommandeComponent implements OnInit {
     let localtime: Date = new Date();  
     this.commande.user=this.user;
     this.commande.datedemmande=localtime;
+    this.commande.firstName=this.user.firstName;
+    this.commande.lastName=this.user.lastName;
+    this.commande.email=this.user.email;
+    this.commande.firstName=this.user.firstName;
+
+
+
     this.commande.state="In progress";
     this.commandeService.createCommande(this.commande)
       .subscribe(data => {
@@ -53,8 +63,12 @@ export class CreateCommandeComponent implements OnInit {
   }
 
   onSubmit() {
+   if(this.commande.adresse==null || this.commande.pannedescription==null|| this.commande.phone==null||this.commande.nameservice==null)
+   { this.message=true;}
+   else{
+    this.message=false;
     this.submitted = true;
-
     this.save();
   }
+}
 }

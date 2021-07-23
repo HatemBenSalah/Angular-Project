@@ -1,8 +1,11 @@
 import { Injectable } from "@angular/core";
+import { Commande } from "../entity/Commande";
  
 
 const TOKEN_KEY = 'accessToken';
 const USER_KEY = 'tokenType';
+const COMMANDE_KEY = 'commandekey';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +32,18 @@ export class TokenStorageService {
     localStorage.removeItem(USER_KEY);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
+  public saveCommande(commande: Commande): void {
+    localStorage.removeItem(COMMANDE_KEY);
+    localStorage.setItem(COMMANDE_KEY, JSON.stringify(commande));
+  }
+  public getCommande(): any {
+    const commande = localStorage.getItem(COMMANDE_KEY);
+    if (commande) {
+      return JSON.parse(commande);
+    }
 
+    return {};
+  }
   public getUser(): any {
     const user = localStorage.getItem(USER_KEY);
     if (user) {

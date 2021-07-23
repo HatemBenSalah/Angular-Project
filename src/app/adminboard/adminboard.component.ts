@@ -4,7 +4,6 @@ import { ClaimService } from 'src/app/service/Claim.service';
 import { RegistrationService } from 'src/app/service/registration.service';
 import { Employee } from 'src/app/entity/Employee';
 import { EmployeeService } from 'src/app/service/employee.service';
-import { Observable } from "rxjs";
 import { Component, OnInit,Input } from "@angular/core";
 import { CommandeService } from 'src/app/service/commande.service';
 import { Commande } from 'src/app/entity/Commande';
@@ -16,6 +15,8 @@ import{User} from 'src/app/entity/User';
   styleUrls: ['./adminboard.component.css']
 })
 export class AdminboardComponent implements OnInit {
+  message="";
+  emptyfild=false;
   submitted = false;
   editEmployee:boolean=false;
   editcommand:boolean=false;
@@ -34,9 +35,12 @@ export class AdminboardComponent implements OnInit {
      { name: "Plomberie", value: 1 },
      { name: "Jardinage", value: 2 },
      { name: "Plomberie", value: 3 },
-     { name: "Maçonnerie générale", value: 4 },
+     { name: "General masonry", value: 4 },
      { name: "Penture", value: 5 },
-     { name: "Électricité", value: 6 }
+     { name: "Electricite", value: 6 },
+     { name: "Charpenterie", value: 7 },
+     { name: "Menage", value: 8 }
+
    ]
    email="";
    Claims: Claim[];
@@ -50,20 +54,20 @@ export class AdminboardComponent implements OnInit {
    constructor(private employeeService: EmployeeService,private CommandeService: CommandeService ,private registrationservice: RegistrationService,private ClaimService: ClaimService, private tokenStorageService :TokenStorageService) {}
  
    ngOnInit() {
-     this.reloadData();
-     this. email=localStorage.getItem('email');
- 
+   this.reloadData();
+    
    }
  
    reloadData() {
+    this. email=localStorage.getItem('email');
     
-    this.ClaimService.getallClaim().subscribe(data => {
+   this.ClaimService.getallClaim().subscribe(data => {
       this.Claims = data;
     });
      this.CommandeService.getAllCommande().subscribe(data => {
        this.commandes = data;
      });
-     this.employeeService.getEmployee().subscribe(data => {
+   this.employeeService.getEmployee().subscribe(data => {
       this.employees = data;
     });
    }
@@ -214,20 +218,60 @@ export class AdminboardComponent implements OnInit {
    this.addemploye=true;
 
  }
-
-saveEmployee() {
-  this.employeeService.createEmployee(this.employee)
+ saveEmployee() {
+  this.employee.roles="employee";
+  this.registrationservice.registerEmployee(this.employee)
     .subscribe(data => {
-      this.employee = new Employee();
+      if(data==false)
+      {
+        this.message="Error: Email is already in use!";
+      }
+   else
+   {
+     this.message=null;
+     this.emptyfild=false;
+     this.addemploye=false;
+     this.openEmployeeList=true;
+     this.message=null;
+   }
+  })
+ this.reloadData();
+ }   
+
+
+/*saveEmployee() {
+  this.employee.roles="employee";
+  this.registrationservice.registerEmployee(this.employee)
+    .subscribe(data => {
+    }, error =>{
+      this.message = error.error.message;
+      {
+      }
     });
   this.reloadData();
+   
 }
-
+*/
 onSubmitemployee() {
-  
-  this.addemploye=false;
-  this.openEmployeeList=true;
-  this.saveEmployee();
+  if(this.employee.employeservice ==null|| this.employee.email ==null|| this.employee.firstName==null || this.employee.lastName==null 
+    || this.employee.password==null|| this.employee.cin==null || this.employee.phone==null )
+     {
+       this.emptyfild=true;
+     }
+
+   else {
+         this.emptyfild=false;
+         this.saveEmployee(); 
+        
+         if(this.message==null){
+                 this.emptyfild=false;
+                 this.addemploye=false;
+                 this.openEmployeeList=true;
+    }
+   
+    this.reloadData();
+
+   }
 }
 cancelCommand(){
   this.editcommand=false;

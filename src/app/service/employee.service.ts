@@ -19,7 +19,13 @@ export class EmployeeService {
       map(this.extractData),
       catchError(this.handleError));
   }
-
+  getEmployeeifexits(email){
+    let headers = new HttpHeaders();
+     headers = headers.set('Content-Type', 'application/json');
+    return this.http.get('/EmployeeController/getEmployeeByEmail/'+email,{headers: headers,responseType: 'json'}).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
   private handleError(error: any) { return observableThrowError(error); }
   private extractData(res) {
     console.log(res)

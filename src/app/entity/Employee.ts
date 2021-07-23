@@ -1,11 +1,13 @@
 export class Employee {
     id: number;
-    employeName: string;
-    employeLastname: string;
-    employeemail: string;
-    employeservice:string;
-    employephone:string;
-    employecin:string;
-    employeepassword:string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    employeservice: string;
+    phone:string;
+    cin:string;
+    password:string;
+    roles:string;
     active: boolean;
+    
 }

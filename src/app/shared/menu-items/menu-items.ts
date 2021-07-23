@@ -43,7 +43,7 @@ const MENUITEMS = [
   },
   
   {
-    label: 'Commandes',
+    label: 'Commands',
     main: [
       {
         state: 'table',
@@ -54,11 +54,11 @@ const MENUITEMS = [
           {
             state: 'createCommande',
             type: 'link',
-            name: 'Create Commande',
+            name: 'Create Command',
           }, {
             state: 'ListCommande',
             type: 'link',
-            name: ' List Commande',
+            name: ' List Command',
           },
           
          {
@@ -88,7 +88,7 @@ const MENUITEMS = [
     label: 'About Us',
     main: [
       {
-        state: 'map',
+        state: 'aboutus',
         name: 'HMS',
         type: 'link',
         icon: 'ti-map-alt'

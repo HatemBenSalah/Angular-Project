@@ -1,3 +1,4 @@
+import { Employee } from "./Employee";
 import { User } from "./User";
 
 export class Commande {
@@ -11,6 +12,10 @@ export class Commande {
     phone :number;
     active: boolean;
     user:User;
+    employee:Employee;
     state:String;
     datedemmande:Date;
+    acceptationdate:Date;
+    interventionstate:string;
+
 }

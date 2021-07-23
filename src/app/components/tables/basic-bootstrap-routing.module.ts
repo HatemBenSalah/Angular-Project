@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from 'src/app/auth/AuthGuard';
 import { CommandeListComponent } from './commande-list/commande-list.component';
 import { CreateCommandeComponent } from './create-commande/create-commande.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';

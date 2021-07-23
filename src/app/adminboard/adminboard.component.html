@@ -22,7 +22,7 @@
         <div class=" mr-sm-2" type="search" placeholder="Search" aria-label="Search">
            {{email}}
         </div>
-        <img src="./assets/images/logout.png" class=" my-2 my-sm-0" (click)="Logout()" routerLink='/auth/login'>
+        <img src="./assets/images/logout.png" class=" my-2 my-sm-0" (click)="Logout()" routerLink='/auth/loginadmin'>
       </form>
     </div>
   </nav>
@@ -54,7 +54,9 @@
                     <th>Panne description</th>
                     <th>Date demmand</th>
                     <th>State</th>
+                    <th>employee</th>
                     <th>Actions</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -67,11 +69,13 @@
                     <td>{{Commande.phone}}</td>
                     <td>{{Commande.pannedescription}}</td>
                     <td>{{Commande.datedemmande}}</td>
-                    <td>{{Commande.State}}</td>
+                    <td>{{Commande.state}}</td>
+                    <td > {{Commande.employee?.lastName }}  {{Commande.employee?.firstName }}</td>
 
-                
+
+                    
                     <td class="text-center">
-                        <button class="btn btn-danger" (click)="deleteCommande(Commande.id)">Delete</button>
+                        <button class="btn btn-danger" [disabled]="Commande.state==='Accepted' " (click)="deleteCommande(Commande.id)">Delete</button>
                         <button  class="btn btn-warning" (click)="EditCommande(Commande)">Edit</button> 
                     </td>
                    
@@ -87,28 +91,7 @@
     <h3>Edit Commande</h3>
     <div  style="width: 400px;" >
         <form (ngSubmit)="onSubmit()">
-            <div class="form-group">
-                <label for="name">First Name</label>
-                <input type="text" class="form-control" id="firstName" required [(ngModel)]="CommandeToEdit.firstName" name="firstName">
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required [(ngModel)]="CommandeToEdit.lastName" name="lastName"/>
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Email </label>
-                <input type="text" class="form-control" id="email" required [(ngModel)]="CommandeToEdit.email" name="email">
-            </div>
-    
-    
-            <div class="form-group">
-                <label for="name">Adress</label>
-                <input type="text" class="form-control" id="Adress" required [(ngModel)]="CommandeToEdit.adresse" name="Adress">
-            </div>
-    
-            <div class="form-group">
+                       <div class="form-group">
                 <label for="name"> service name </label>
                 <select class="form-select"  name="service" id="service-select" [(ngModel)]="CommandeToEdit.nameservice">
                    
@@ -116,15 +99,6 @@
                             {{o.name}}
                          </option>
                 </select>    
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Phone Number</label>
-                <input type="text" class="form-control" id="Phone" required [(ngModel)]="CommandeToEdit.phone" name="Phone">
-            </div>
-            <div class="form-group">
-                <label for="name">Panne description</label>
-                <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="CommandeToEdit.pannedescription" name="pannedescription">
             </div>
             <button type="button" class="btn btn-success"(click)="doneCommand()">Submit</button>
             <button type="button" class="btn btn-default ml-2" (click)="cancelCommand()">Cancel</button>
@@ -160,8 +134,11 @@
                       <th>Adress</th>
                       <th>Service Name</th>
                       <th>Phone Number</th>
+
                       <th>Claim description</th>
                       <th>Date demmand</th>
+                      <th>Employee</th>
+
                       <th>State</th>
 
                       <th>Actions</th>
@@ -177,10 +154,11 @@
                       <td>{{Claim.phone}}</td>
                       <td>{{Claim.claimdescription}}</td>
                       <td>{{Claim.datedemmande}}</td>
-                      <td>{{Claim.State}}</td>
+                      <td > {{Claim.employee?.lastName }}  {{Claim.employee?.firstName }}</td>
+                      <td>{{Claim.state}}</td>
                          
                       <td class="text-center">
-                        <button class="btn btn-danger" (click)="deleteClaim(Claim.id)">Delete</button>
+                        <button class="btn btn-danger" [disabled]="Claim.state==='Accepted' " (click)="deleteClaim(Claim.id)">Delete</button>
                         <button  class="btn btn-warning" (click)="EditClaim(Claim)">Edit</button> 
                       </td>
                      
@@ -196,27 +174,6 @@
     <div style="width: 400px;" >
         <form (ngSubmit)="doneClaim()">
             <div class="form-group">
-                <label for="name">First Name</label>
-                <input type="text" class="form-control" id="firstName" required [(ngModel)]="ClaimToEdit.firstName" name="firstName">
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Last Name</label>
-                <input type="text" class="form-control" id="lastName" required [(ngModel)]="ClaimToEdit.lastName" name="lastName"/>
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Email </label>
-                <input type="text" class="form-control" id="email" required [(ngModel)]="ClaimToEdit.email" name="email">
-            </div>
-    
-    
-            <div class="form-group">
-                <label for="name">Adress</label>
-                <input type="text" class="form-control" id="Adress" required [(ngModel)]="ClaimToEdit.adresse" name="Adress">
-            </div>
-    
-            <div class="form-group">
                 <label for="name"> service name </label>
                 <select class="form-select"  name="service" id="service-select" [(ngModel)]="ClaimToEdit.nameservice">
                    
@@ -224,15 +181,6 @@
                             {{o.name}}
                          </option>
                 </select>    
-            </div>
-    
-            <div class="form-group">
-                <label for="name">Phone Number</label>
-                <input type="text" class="form-control" id="Phone" required [(ngModel)]="ClaimToEdit.phone" name="Phone">
-            </div>
-            <div class="form-group">
-                <label for="name">Claim description</label>
-                <input type="text" class="form-control" id="Claimdescription" required [(ngModel)]="ClaimToEdit.claimdescription" name="pannedescription">
             </div>
             <button type="submit" class="btn btn-success"(click)="doneClaim()">Submit</button>
             <button type="button" class="btn btn-default ml-2" (click)="cancelClaim()">Cancel</button>
@@ -278,12 +226,12 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let Employee of employees">
-                        <td>{{Employee.employeName}}</td>
-                        <td>{{Employee.employeLastname}}</td>
-                        <td>{{Employee.employeemail}}</td>
+                        <td>{{Employee.firstName}}</td>
+                        <td>{{Employee.lastName}}</td>
+                        <td>{{Employee.email}}</td>
                         <td>{{Employee.employeservice}}</td>
-                        <td>{{Employee.employephone}}</td>
-                        <td>{{Employee.employecin}}</td>
+                        <td>{{Employee.phone}}</td>
+                        <td>{{Employee.cin}}</td>
                         <td>**********</td>
                     
                         <td class="text-center">
@@ -303,25 +251,21 @@
         <form (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="name">First Name</label>
-                <input type="text" class="form-control" id="employeName" required [(ngModel)]="EmployeeToEdit.employeName" name="employeName">
+                <input type="text" class="form-control" id="employeName" required [(ngModel)]="EmployeeToEdit.firstName" name="employeName">
             </div>
     
             <div class="form-group">
                 <label for="name">Last Name</label>
-                <input type="text" class="form-control" id="employeLastname" required [(ngModel)]="EmployeeToEdit.employeLastname" name="employeLastname"/>
+                <input type="text" class="form-control" id="lastName" required [(ngModel)]="EmployeeToEdit.lastName" name="lastName"/>
             </div>
-    
             <div class="form-group">
-                <label for="name">Email </label>
-                <input type="text" class="form-control" id="employeemail" required [(ngModel)]="EmployeeToEdit.employeemail" name="employeemail">
+                <label for="name">Phone Number</label>
+                <input type="text" class="form-control" id="phone" required [(ngModel)]="EmployeeToEdit.phone" name="phone">
             </div>
-    
-    
             <div class="form-group">
-                <label for="name">CIN</label>
-                <input type="number" class="form-control" id="employecin" required [(ngModel)]="EmployeeToEdit.employecin" name="employecin">
+                <label for="name">Password</label>
+                <input type="password" class="form-control" id="password" required [(ngModel)]="EmployeeToEdit.password" name="password">
             </div>
-    
             <div class="form-group">
                 <label for="name"> service name </label>
                 <select class="form-select"  name="employeservice" id="service-select" [(ngModel)]="EmployeeToEdit.employeservice">
@@ -332,14 +276,6 @@
                 </select>    
             </div>
     
-            <div class="form-group">
-                <label for="name">Phone Number</label>
-                <input type="text" class="form-control" id="employephone" required [(ngModel)]="EmployeeToEdit.employephone" name="employephone">
-            </div>
-            <div class="form-group">
-                <label for="name">Password</label>
-                <input type="password" class="form-control" id="employeepassword" required [(ngModel)]="EmployeeToEdit.employeepassword" name="employeepassword">
-            </div>
             <button type="submit" class="btn btn-success"(click)="doneEmploye()">Submit</button>
             <button type="button" class="btn btn-default ml-2" (click)="cancelEditEmployee()">Cancel</button>
 
@@ -351,51 +287,86 @@
 <div class="ml-4 mr-4"  *ngIf="addemploye" style="width: 400px;" >
     <h3>Create employee account </h3>
 
-    <form (ngSubmit)="onSubmitemployee()">
-        <div class="form-group">
-            <label for="name">First Name</label>
-            <input type="text" class="form-control" id="employeName" required [(ngModel)]="employee.employeName" name="employeName">
-        </div>
-        
+    <form >
+     
+    <div class="form-group">
 
-        <div class="form-group">
-            <label for="name">Last Name</label>
-            <input type="text" class="form-control" id="employeLastname" required [(ngModel)]="employee.employeLastname" name="employeLastname">
-        </div>
-
-        <div class="form-group">
-            <label for="name">CIN</label>
-            <input type="number" class="form-control" id="employecin" required [(ngModel)]="employee.employecin" name="employecin">
-        </div>
-        <div class="form-group">
-            <label for="name">Email</label>
-            <input type="text" class="form-control" id="employeemail" required [(ngModel)]="employee.employeemail" name="employeemail">
-        </div>
-        <div class="form-group">
-            <label for="name">Password</label>
-            <input type="password" class="form-control" id="password" required [(ngModel)]="employee.password" name="password">
-         
-        </div>
-        <div class="form-group">
-            <label for="name">Phone</label>
-            <input type="number" class="form-control" id="employephone" required [(ngModel)]="employee.employephone" name="employephone" value="a">
-        </div>
-
-        <div class="form-group">
-            <label for="name"> service name </label>
-         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name="employeservice" id="service-select" [(ngModel)]="employee.employeservice">
-               
-                    <option selected *ngFor="let o of options">
-                        {{o.name}}
-                     </option>
-            </select> 
-             
-        </div>
+        <input type="text" class="form-control"  id="firstName" required [(ngModel)]="employee.firstName" name="firstName"placeholder=" FirstName" required #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched"/>
+     <div>
+          <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">Email is required filed</small>
+     </div>
+      </div>
       
-        <button type="submit" class="btn btn-success">Submit</button>
+
+      <br>
+      <div class="form-group">
+
+        <input type="text" class="form-control"  id="lastName" required [(ngModel)]="employee.lastName" name="lastName"placeholder=" LastName" required #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched"/>
+        <div>
+          <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">lastName is required filed</small>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+
+        <input type="number" class="form-control"  id="CIN" required [(ngModel)]="employee.cin" name="cin" placeholder=" CIN" required #cin="ngModel" [class.is-invalid]="cin.invalid && cin.touched"/>
+        <div>
+          <small class="text-danger" [class.d-none]="cin.valid || cin.untouched">CIN is required filed</small>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+
+        <input type="number" class="form-control"  id="phone" required [(ngModel)]="employee.phone" name="phone" placeholder=" Phone Number" required #phone="ngModel"  [class.is-invalid]="phone.invalid && phone.touched"/>
+         <div>
+          <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone is required filed</small>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+
+        <input type="text" class="form-control"  id="Adresse" required [(ngModel)]="employee.adresse" name="address"placeholder=" Adresse" required #adresse="ngModel" [class.is-invalid]="adresse.invalid && adresse.touched"/>
+        <div>
+          <small class="text-danger" [class.d-none]="adresse.valid || adresse.untouched">Adresse is required filed</small>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+            <input type="email" class="form-control" id="email" required [(ngModel)]="employee.email" name="email" placeholder=" Email Address" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched"/> 
+            <small class="text-danger">{{message}}</small>
+
+            <div>
+          <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required filed</small>
+        </div>
+        <span class="md-line"></span>
+      </div>
+      <br>
+      <div class="form-group">
+
+        <input type="password" class="form-control" id="password" required [(ngModel)]="employee.password"  name="password" placeholder=" password" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched"/>
+        <div>
+          <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required filed</small>
+        </div>
+      </div>
+      <br>
+       <div class="form-group">
+                <label for="name"> service name </label>
+                <select class="form-select"  name="employeservice" id="service-select" [(ngModel)]="employee.employeservice">
+                   
+                        <option *ngFor="let o of options">
+                            {{o.name}}
+                         </option>
+                </select>    
+            </div>
+      <small *ngIf="emptyfild" class="text-danger" >Empty filed</small>
+   
+      <br>
+
+        <button type="button" (click)="onSubmitemployee()"class="btn btn-success">Submit</button>
         <button type="button" class="btn btn-default ml-2" (click)="cancelCreateEmployee()">Cancel</button>
     </form>
 </div>
+
 
 
    

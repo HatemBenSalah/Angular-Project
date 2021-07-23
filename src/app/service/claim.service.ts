@@ -15,7 +15,22 @@ export class ClaimService{
       map(this.extractData),
       catchError(this.handleError));
   }
+  
+  getClaimByEmployeeService(service){
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json');
+    return this.http.get('/ClaimController/getClaimByEmployeeService/'+service,{headers: headers,responseType: 'json'}).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
 
+  getClaimbyemployeeId(id){
+    let headers = new HttpHeaders();
+     headers = headers.set('Content-Type', 'application/json');
+    return this.http.get('/ClaimController/getClaimByEmployeeid/'+id,{headers: headers,responseType: 'json'}).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+  }
   getallClaim(){
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');

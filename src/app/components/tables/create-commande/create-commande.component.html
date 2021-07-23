@@ -1,51 +1,48 @@
 <div [hidden]="submitted" style="width: 500px;" >
-    <h3>Create Commande </h3>
+    <h3>Create command  </h3>
 
     <div class="position-absolute" style="right: 200px" > 
         <img src="./assets/images/services/commande.jpg">
     </div>
     <form (ngSubmit)="onSubmit()">
+       
+
+      
+
         <div class="form-group">
-            <label for="name">First Name</label>
-            <input type="text" class="form-control" id="firstName" required [(ngModel)]="commande.firstName" name="firstName">
+            <label for="name">Location</label>
+            <input type="text" class="form-control" id="adress" required [(ngModel)]="commande.adresse" name="adress"  required #adress="ngModel" [class.is-invalid]="adress.invalid && adress.touched">
+            <small class="text-danger" [class.d-none]="adress.valid || adress.untouched">Location is required filed</small>
+
         </div>
         
-
-        <div class="form-group">
-            <label for="name">Last Name</label>
-            <input type="text" class="form-control" id="lastName" required [(ngModel)]="commande.lastName" name="lastName">
-        </div>
-
-        <div class="form-group">
-            <label for="name">Adress</label>
-            <input type="text" class="form-control" id="adress" required [(ngModel)]="commande.adresse" name="adress">
-        </div>
-        <div class="form-group">
-            
-            
-
-            <label for="name">Email</label>
-            <input type="text" class="form-control" id="email" required [(ngModel)]="commande.email" name="email">
-        </div>
         <div class="form-group">
             <label for="name">Phone</label>
-            <input type="text" class="form-control" id="Phone" required [(ngModel)]="commande.phone" name="Phone" value="a">
+            <input type="number" class="form-control" id="Phone" required [(ngModel)]="commande.phone" name="Phone" value="a" required #Phone="ngModel" [class.is-invalid]="Phone.invalid && Phone.touched">
+            <small class="text-danger" [class.d-none]="Phone.valid || Phone.untouched">Phone is required filed</small>
+
         </div>
 
-        <div class="form-group">
-            <label for="name"> service name </label>
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name="service" id="service-select" [(ngModel)]="commande.nameservice">
-               
-                    <option selected *ngFor="let o of options">
-                        {{o.name}}
-                     </option>
-            </select> 
-           
-        </div>
+       
         <div class="form-group">
             <label for="name">Panne description </label>
-            <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="commande.pannedescription" name="pannedescription">
+            <input type="text" class="form-control" id="pannedescription" required [(ngModel)]="commande.pannedescription" name="pannedescription"  required #pannedescription="ngModel" [class.is-invalid]="pannedescription.invalid && pannedescription.touched">
+            <small class="text-danger" [class.d-none]="pannedescription.valid || pannedescription.untouched">Panne description is required filed</small>
+
         </div>
+        <div class="form-group">
+            <small class="text-danger" *ngIf="message">Empty required filed</small>
+            <div class="form-group">
+                <label for="name"> service name </label>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  name="service" id="service-select" [(ngModel)]="commande.nameservice">
+                   
+                        <option selected *ngFor="let o of options">
+                            {{o.name}}
+                         </option>
+                </select> 
+               
+            </div>
+    </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="button"class="btn btn-default ml-2" routerLink='/'>Cancel</button>
 

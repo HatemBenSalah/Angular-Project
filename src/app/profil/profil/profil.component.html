@@ -14,11 +14,13 @@
       {{firstname}}
     </div>
    <div class="col-sm" *ngIf="ModifierFirstname" >
-    <input type="text" placeholder=" First Name "  [(ngModel)]="user.firstName">
+    <input type="text" placeholder=" First Name " id="firstName" [(ngModel)]="user.firstName"  required #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched">
+    <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">FirstName is required filed</small>
+
    </div>
   <div class="col-sm"  >
-      <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierFirstname" (click)="Editfirstname()">
-      <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierFirstname" (click)="Editfirstname()">
+      <input type="button" class="btn btn-info" value="Modifier"  *ngIf="!ModifierFirstname" (click)="Editfirstname()">
+      <input type="button" class="btn btn-success" value="Done" [disabled]="!user.firstName" *ngIf="ModifierFirstname" (click)="Editfirstname()">
   </div>
   </div>
 </div>
@@ -34,35 +36,21 @@
         {{lastname}}
       </div>
      <div class="col-sm" *ngIf="ModifierLastname" >
-      <input type="text" placeholder=" Last Name "  [(ngModel)]="user.lastName">
+      <input type="text" placeholder=" Last Name "  id="lastName" [(ngModel)]="user.lastName" required #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched">
+      <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">LastName is required filed</small>
+
      </div>
     <div class="col-sm"  >
         <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierLastname" (click)="EditLastname()">
-        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierLastname" (click)="EditLastname()">
+        <input type="button" class="btn btn-success" [disabled]="!user.lastName" value="Done" *ngIf="ModifierLastname" (click)="EditLastname()">
     </div>
     </div>
   </div>
   <br>
   
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm">
-      Email 
-      </div>
-      <div class="col-sm" *ngIf="!ModifierEmail">
-        {{email}}
-      </div>
-     <div class="col-sm" *ngIf="ModifierEmail" >
-      <input type="text" placeholder=" email "  [(ngModel)]="user.email">
-     </div>
-    <div class="col-sm"  >
-        <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierEmail" (click)="EditEmail()">
-        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierEmail" (click)="EditEmail()">
-    </div>
-    </div>
-  </div>
-  <br>
+ 
+ 
  
   
 
@@ -75,11 +63,13 @@
         *****************
       </div>
      <div class="col-sm" *ngIf="ModifierPassword" >
-      <input type="password" placeholder=" Password "  [(ngModel)]="user.password">
+      <input type="password" placeholder=" Password "  id="password" [(ngModel)]="user.password" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched">
+      <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required filed</small>
+
      </div>
     <div class="col-sm"  >
         <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierPassword" (click)="EditPasswordname()">
-        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierPassword" (click)="EditPasswordname()">
+        <input type="button" class="btn btn-success" value="Done" [disabled]="!user.password" *ngIf="ModifierPassword" (click)="EditPasswordname()">
     </div>
    
     </div>
@@ -96,11 +86,13 @@
         {{Location}}
       </div>
      <div class="col-sm" *ngIf="ModifierLocation" >
-      <input type="text" placeholder=" Location "  [(ngModel)]="user.adresse" >
+      <input type="text" placeholder=" Location "  id="adress" [(ngModel)]="user.adresse" required #adress="ngModel" [class.is-invalid]="adress.invalid && adress.touched" >
+      <small class="text-danger" [class.d-none]="adress.valid || adress.untouched">Location is required filed</small>
+
      </div>
     <div class="col-sm"  >
         <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierLocation" (click)="EditLocation()">
-        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierLocation" (click)="EditLocation()">
+        <input type="button" class="btn btn-success" value="Done" [disabled]="!user.adresse" *ngIf="ModifierLocation" (click)="EditLocation()">
     </div>
     </div>
   </div>
@@ -116,11 +108,13 @@
         {{CIN}}
       </div>
      <div class="col-sm" *ngIf="ModifierCIN" >
-      <input type="number" placeholder=" CIN "  [(ngModel)]="user.cin">
+      <input type="number" placeholder=" CIN " id="CIN" [(ngModel)]="user.cin" required #CIN="ngModel" [class.is-invalid]="CIN.invalid && CIN.touched">
+      <small class="text-danger" [class.d-none]="CIN.valid || CIN.untouched">CIN is required filed</small>
+
      </div>
     <div class="col-sm"  >
         <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierCIN" (click)="EditCIN()">
-        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierCIN" (click)="EditCIN()">
+        <input type="button" class="btn btn-success" value="Done" [disabled]="!user.cin" *ngIf="ModifierCIN" (click)="EditCIN()">
     </div>
     </div>
   </div>
@@ -136,11 +130,13 @@
         {{phone}}
       </div>
      <div class="col-sm" *ngIf="ModifierPhone" >
-      <input type="number" placeholder=" Phone "  [(ngModel)]="user.phone" >
+      <input type="number" placeholder=" Phone "  [(ngModel)]="user.phone" id="Phone" name="Phone" value="a" required #Phone="ngModel" [class.is-invalid]="Phone.invalid && Phone.touched">
+      <small class="text-danger" [class.d-none]="Phone.valid || Phone.untouched">Phone is required filed</small>
+
      </div>
     <div class="col-sm"  >
         <input type="button" class="btn btn-info" value="Modifier" *ngIf="!ModifierPhone" (click)="EditPhone()">
-        <input type="button" class="btn btn-success" value="Done" *ngIf="ModifierPhone" (click)="EditPhone()">
+        <input type="button" class="btn btn-success" value="Done" [disabled]="!user.phone" *ngIf="ModifierPhone" (click)="EditPhone()">
     </div>
     </div>
   </div>

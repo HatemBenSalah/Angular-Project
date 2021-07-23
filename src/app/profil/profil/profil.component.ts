@@ -38,12 +38,12 @@ ModifierEmail:boolean=false;
   ngOnInit() 
   {
     
-    this. reloadData();
+    this.reloadData();
   }
 
   reloadData() {
     this.user=this.tokenStorageService.getUser();
-     console.log("hatem"+this.user.cin);
+
     this.firstname=this.user.firstName;
     this.lastname=this.user.lastName;
     this.Location=this.user.adresse;
@@ -52,11 +52,11 @@ ModifierEmail:boolean=false;
     this.email=this.user.email;      
   }
    save(){
-     this.userservice.getUserbyId(this.user).subscribe(data => {
+     this.userservice.getUserbyId(this.tokenStorageService.getToken()).subscribe(data => {
      this.user=data;   
    });
    this.tokenStorageService.saveUser(this.user);
-
+this.reloadData()
    }
 EditPhone()
 {
@@ -71,12 +71,14 @@ EditPhone()
  
 Editfirstname(  ){
   this.ModifierFirstname=!this.ModifierFirstname;
-  this.userservice.updateUser(this.user).subscribe(data => {
+  if(this.user.firstName==null)
+  {this.user=this.tokenStorageService.getUser();}
+  else {this.userservice.updateUser(this.user).subscribe(data => {
   });
  
   this.save();
     this.reloadData();
- 
+}
 }
 EditLastname(  ){
   this.ModifierLastname=!this.ModifierLastname;

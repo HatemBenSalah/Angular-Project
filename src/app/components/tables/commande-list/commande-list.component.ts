@@ -4,6 +4,7 @@ import { CommandeService } from 'src/app/service/commande.service';
 import { Commande } from 'src/app/entity/Commande';
 import { TokenStorageService } from 'src/app/service/TokenStorageService';
 import{User} from 'src/app/entity/User';
+import { Console } from "console";
 
 @Component({
   selector: "app-commande-list",
@@ -18,9 +19,11 @@ export class CommandeListComponent implements OnInit {
     { name: "Plomberie", value: 1 },
     { name: "Jardinage", value: 2 },
     { name: "Plomberie", value: 3 },
-    { name: "Maçonnerie générale", value: 4 },
+    { name: "General masonry", value: 4 },
     { name: "Penture", value: 5 },
-    { name: "Électricité", value: 6 }
+    { name: "Electricite", value: 6 },
+    { name: "Charpenterie", value: 7 },
+    { name: "Menage", value: 8 }
   ]
   commandes: Commande[];
   CommandeToEdit:any={};
@@ -50,15 +53,14 @@ export class CommandeListComponent implements OnInit {
   }
   EditCommande(cm)
   {
-    console.log(cm)
     this.savedToEditCommande =cm ;
     Object.assign(this.CommandeToEdit, cm);
     this.edition=true;
   }
+  createClaim(cm){
+   this.tokenStorageService.saveCommande(cm);
+  }
   done(){
-    console.log(this.CommandeToEdit)
-   
-    console.log(this.savedToEditCommande)
     this.edition=false;
     this.CommandeService.updateCommande(this.CommandeToEdit).subscribe(data =>{
       if(data == true){
@@ -70,6 +72,15 @@ export class CommandeListComponent implements OnInit {
       
     });
 
+  }
+  cancelEditCommand(){
+    this.edition=false;
+  }
+  DisableClaim( state ){
+    if(state.Match("Accepted"))
+    return true;
+    else
+    return false;
   }
   
   
