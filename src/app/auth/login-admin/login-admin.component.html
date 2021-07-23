@@ -1,0 +1,59 @@
+<body>
+  <section class="login p-fixed d-flex text-center bg-primary ">
+    <div class="auth-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="login-card card-body auth-body">
+            <form class="md-float-material">
+             
+              <div class="auth-box">
+                <div class="row m-b-20">
+                  <div class="col-md-12">
+                    <h1 class="text-left txt-primary" class="centrer">Admin </h1>
+                  </div>
+                </div>
+                <hr/>
+                <div >
+                  <input type="email" class="form-control" placeholder=" Email :" name="email" [(ngModel)]="admin.email" required #email="ngModel" [class.is-invalid]="email.invalid && email.touched"/>
+                  <div>
+                  <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required filed</small>
+                </div>
+                  <span class="md-line"></span>
+                </div>
+                <br>
+  
+  
+  
+                <div >
+                  <input type="password" class="form-control" placeholder=" Password :" name="password" [(ngModel)]="admin.password" required #password="ngModel"
+                  [class.is-invalid]="password.invalid && password.touched">
+                  <span class="md-line"></span>
+                </div>
+                <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required filed</small>
+                <div class="row m-t-30">
+                  <div class="col-md-12">
+                    <label class="text-danger"> {{errorMessage}}</label>
+                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)=checkLogin()>Sign in</button>
+  
+                  </div>
+                </div>
+                <hr/>
+                <div class="row">
+                  <div class="col-md-10">
+                    <p class="text-inverse text-left m-b-0"></p>
+                    <p class="text-inverse text-left"><b></b></p>
+                  </div>
+                  <div class="col-md-2">
+                    
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  </body>
